@@ -19,3 +19,7 @@ Route::get('/', function () {
 
 Route::get('users/index', 'UsersController@index')->name('users.index');
 Route::get('users/show/{id}', 'UsersController@show')->name('users.show');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
