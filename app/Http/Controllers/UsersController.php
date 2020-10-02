@@ -24,11 +24,18 @@ class UsersController extends Controller
     public function edit($id){
 
         $user = User::find($id);
-        //dd($user);
+        
         return view('users.edit', compact('user'));
     }
 
-    public function update(){
+    public function update(Request $request, $id){
 
+        $user = User::find($id);
+
+        $user->name = $request->input('name');
+
+        $user->save();
+
+        return redirect('users/index');
     }
 }
