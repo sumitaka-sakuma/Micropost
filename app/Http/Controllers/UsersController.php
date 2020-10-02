@@ -10,7 +10,10 @@ class UsersController extends Controller
 {
     public function index(){
 
-        $users = User::all();
+        $users = DB::table('users')
+                   ->select('id', 'name', 'created_at')
+                   ->orderBy('created_at', 'desc')
+                   ->paginate(10);
 
         return view('users.index', compact('users'));
     }
