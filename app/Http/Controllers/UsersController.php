@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
 class UsersController extends Controller
@@ -35,6 +36,15 @@ class UsersController extends Controller
         $user->name = $request->input('name');
 
         $user->save();
+
+        return redirect('users/index');
+    }
+
+    public function destroy($id){
+
+        $user = User::find($id);
+
+        $user->delete();
 
         return redirect('users/index');
     }
