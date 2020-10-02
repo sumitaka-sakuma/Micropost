@@ -4,11 +4,22 @@
 
 <div class="container">
   <div class="row">
-    <div class="col col-md-4">
-     
-    </div>
     <div class="column col-md-8">
-        {{ $users }}
+      <div class="card">
+        <div class="card-header">ユーザー一覧</div>
+          <table class="talbe">
+            <tbody>
+              @foreach($users as $user)
+              <tr>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->name }}</td>
+              @endforeach
+              </tr>
+            </tbody>
+          </table>
+          
+        </div>
+      </div>
     </div>
   </div>
 </div>
