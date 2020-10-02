@@ -20,4 +20,15 @@ class UsersController extends Controller
 
         return view('users.show', compact('user'));
     }
+
+    public function edit($id){
+
+        $user = User::find($id);
+        //dd($user);
+        return view('users.edit', compact('user'));
+    }
+
+    public function update(){
+
+    }
 }

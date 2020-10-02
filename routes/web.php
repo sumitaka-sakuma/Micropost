@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Route::get('users/index', 'UsersController@index')->name('users.index');
 Route::get('users/show/{id}', 'UsersController@show')->name('users.show');
+Route::get('users/edit/{id}', 'UsersController@edit')->name('users.edit');
+Route::post('users/update/{id}', 'UsersController@update')->name('users.update');
 
 Auth::routes();
 
