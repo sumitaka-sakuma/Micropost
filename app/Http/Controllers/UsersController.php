@@ -37,6 +37,9 @@ class UsersController extends Controller
         $user = User::find($id);
 
         $user->name = $request->input('name');
+        $user->birthday = $request->input('birthday');
+        $user->gender = $request->input('gender');
+        $user->self_introduction = $request->input('self_introduction');
 
         $user->save();
 
