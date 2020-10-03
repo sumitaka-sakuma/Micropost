@@ -19,6 +19,29 @@
           <br>
 
           <div class="form-group">
+            <label for="user-name" class="col-form-label text-md-right">生年月日</label>
+            <div class="text-md-right">
+              <input type="text" class="form-control" name="birthday" value="{{ $user->birthday }}">
+            </div>
+          </div>
+          <br>
+          
+          <div class="form-group">
+            <label for="user-name" class="col-form-label text-md-right">性別</label>
+            <div class="text-md-right">
+              <input type="text" class="form-control" name="gender" value="{{ $user->gender }}">
+            </div>
+          </div>
+          <br>
+
+          <div class="form-group">
+            <label for="user-name" class="col-form-label text-md-right">自己紹介</label>
+            <div class="text-md-right">
+              <input type="text" class="form-control" name="self_introduction" value="{{ $user->self_introduction }}">
+            </div>
+          </div>
+
+          <div class="form-group">
             <div class="text-right">
               <input class="btn btn-info " type="submit" value="更新する"> 
             </div>
