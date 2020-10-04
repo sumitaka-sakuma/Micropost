@@ -26,7 +26,9 @@ class UsersProfileEdit extends FormRequest
     {
         return [
             'name' => 'required|string|max:30',
-            
+            'birthday' => 'required',
+            'gender'   => 'required',
+            'self_introduction' => 'required|string|max:300'
         ];
     }
 }
