@@ -7,6 +7,17 @@
     <div class="column col-md-10">
       <div class="card">
         <div class="card-header">プロフィール編集</div>
+          
+          @if ($errors->any())
+            <div class="alert alert-danger">
+              <ul>
+                @foreach($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
+
           <form method="POST" action="{{ route('users.update', ['id' => $user->id ])}}">
           @csrf
 
