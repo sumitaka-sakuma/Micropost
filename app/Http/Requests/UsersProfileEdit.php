@@ -24,11 +24,16 @@ class UsersProfileEdit extends FormRequest
      */
     public function rules()
     {
+
+        $man   = "男";
+        $woman = "女";
+        $other = "その他";
+
         return [
             'name' => 'required|string|max:30',
-            'birthday' => 'required',
-            'gender'   => 'required',
-            'self_introduction' => 'required|string|max:300'
+            //'birthday' => 'date_format:"YYYY/MM/DD"',
+            //'gender'   => 'starts_with:',
+            'self_introduction' => 'string|max:300'
         ];
     }
 }

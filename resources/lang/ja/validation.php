@@ -42,6 +42,7 @@ return [
     'exists'               => '指定された:attributeは存在しません。',
     'file'                 => ':attributeにはファイルを指定してください。',
     'filled'               => ':attributeには空でない値を指定してください。',
+    'gender'               => ':attributeには男、女、その他のいずれかを指定してください',
     'image'                => ':attributeには画像ファイルを指定してください。',
     'in'                   => ':attributeには:valuesのうちいずれかの値を指定してください。',
     'in_array'             => ':attributeが:otherに含まれていません。',
