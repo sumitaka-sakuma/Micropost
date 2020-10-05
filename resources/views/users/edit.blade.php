@@ -37,13 +37,15 @@
           </div>
           <br>
           
-          <div class="form-group row">
+          <div class="form-group">
             <label for="user-gender" class="col-form-label col-md-2 text-md-center">性別</label>
-            <div class="col-md-5">
-              <input type="radio" class="form-control" name="gender" value="0">男性
+            <div class="form-check form-check-inline">
+              <input type="radio" class="form-check-input" name="gender" value="0">
+              <label class="form-check-lable col-form-label">男性</label>
             </div>
-            <div class="col-md-5">
-              <input type="radio" class="form-control" name="gender" value="1">女性
+            <div class="form-check form-check-inline">
+              <input type="radio" class="form-check-input" name="gender" value="1">
+              <label class="form-check-label col-form-label">女性</label>
             </div>
           </div>
           <br>
