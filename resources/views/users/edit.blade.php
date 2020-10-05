@@ -30,7 +30,7 @@
           <br>
 
           <div class="form-group">
-            <label for="user-name" class="col-form-label text-md-right">生年月日</label>
+            <label for="user-birthday" class="col-form-label text-md-right">生年月日</label>
             <div class="text-md-right">
               <input type="text" class="form-control" name="birthday" value="{{ $user->birthday }}">
             </div>
@@ -38,7 +38,7 @@
           <br>
           
           <div class="form-group">
-            <label for="user-name" class="col-form-label text-md-right">性別</label>
+            <label for="user-gender" class="col-form-label text-md-right">性別</label>
             <div class="text-md-right">
               <input type="text" class="form-control" name="gender" value="{{ $user->gender }}">
             </div>
@@ -46,11 +46,10 @@
           <br>
 
           <div class="form-group">
-            <label for="user-name" class="col-form-label text-md-right">自己紹介</label>
-            <div class="text-md-right">
-              <input type="text" class="form-control" name="self_introduction" value="{{ $user->self_introduction }}">
-            </div>
+            <label for="user-self_introduction" class="col-form-label text-md-right">自己紹介</label>
+            <textarea class="form-control" name="self_introduction">{{ $user->self_introduction }}</textarea>
           </div>
+          <br>
 
           <div class="form-group">
             <div class="text-right">
