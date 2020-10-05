@@ -21,33 +21,38 @@
           <form method="POST" action="{{ route('users.update', ['id' => $user->id ])}}">
           @csrf
 
-          <div class="form-group">
-            <label for="user-name" class="col-form-label text-md-right">ユーザー名</label>
-            <div class="text-md-right">
+          <div class="form-group row">
+            <label for="user-name" class="col-form-label col-md-2 text-md-center">ユーザー名</label>
+            <div class="col-md-10">
               <input type="text" class="form-control" name="name" value="{{ $user->name }}">
             </div>
           </div>
           <br>
 
-          <div class="form-group">
-            <label for="user-birthday" class="col-form-label text-md-right">生年月日</label>
-            <div class="text-md-right">
+          <div class="form-group row">
+            <label for="user-birthday" class="col-form-label col-md-2 text-md-center">生年月日</label>
+            <div class="col-md-10">
               <input type="text" class="form-control" name="birthday" value="{{ $user->birthday }}">
             </div>
           </div>
           <br>
           
-          <div class="form-group">
-            <label for="user-gender" class="col-form-label text-md-right">性別</label>
-            <div class="text-md-right">
-              <input type="text" class="form-control" name="gender" value="{{ $user->gender }}">
+          <div class="form-group row">
+            <label for="user-gender" class="col-form-label col-md-2 text-md-center">性別</label>
+            <div class="col-md-5">
+              <input type="radio" class="form-control" name="gender" value="0">男性
+            </div>
+            <div class="col-md-5">
+              <input type="radio" class="form-control" name="gender" value="1">女性
             </div>
           </div>
           <br>
 
-          <div class="form-group">
-            <label for="user-self_introduction" class="col-form-label text-md-right">自己紹介</label>
-            <textarea class="form-control" name="self_introduction">{{ $user->self_introduction }}</textarea>
+          <div class="form-group row">
+            <label for="user-self_introduction" class="col-form-label col-md-2 text-md-center">自己紹介</label>
+            <div class="col-md-10">
+              <textarea class="form-control" name="self_introduction">{{ $user->self_introduction }}</textarea>
+            </div>
           </div>
           <br>
 
