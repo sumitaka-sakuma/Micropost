@@ -30,8 +30,9 @@ class UsersController extends Controller
 
         $user = User::find($id);
 
+        //誕生日を年、月、日に分割する。
         $user_birthday= explode('-', $user->birthday);
-        //dd($user_birthday);
+        
         return view('users.edit', compact('user','user_birthday'));
     }
 
@@ -44,6 +45,9 @@ class UsersController extends Controller
         $user->gender = $request->input('gender');
         $user->self_introduction = $request->input('self_introduction');
 
+        //年、月、日に分割された誕生日を連結する。
+        $user->birthday = $user->birthday[0].'-'.$user->birthday[1].'-'.$user->birthday[2];
+        
         $user->save();
 
         return redirect('users/index');

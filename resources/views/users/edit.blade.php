@@ -33,23 +33,21 @@
             <div class="form-group row">
               <label for="user-birthday" class="col-form-label col-md-2 text-md-center">生年月日</label>
               <div class="col-md-10">
-                <input type="text" class="form-control" name="birthday" value="{{ $user->birthday }}">
+                <div class="form-check form-check-inline">
+                  {{ Form::selectRange('birthday[0]', 1990, 2020, $user->birthday[0]) }}
+                  <label class="form-check-lable col-form-label">年</label>             
+                </div>
+                <div class="form-check form-check-inline" name="birthday">
+                  {{ Form::selectRange('birthday[1]', 01, 12, $user->birthday[1]) }}
+                  <label class="form-check-lable col-form-label">月</label>             
+                </div>
+                <div class="form-check form-check-inline" name="birthday">
+                  {{ Form::selectRange('birthday[2]', 01, 31, $user->birthday[2]) }}
+                  <label class="form-check-lable col-form-label">日</label>             
+                </div>
               </div>
             </div>
             <br>
-
-            <div class="form-group row">
-              <label for="user-birthday" class="col-form-label col-md-2 text-md-center">生年月日</label>
-              <div class="form-check form-check-inline" name="birthday">
-                {{ Form::selectRange('form_year', 1990, 2020) }}
-                <label class="form-check-lable col-form-label">年</label>             
-              </div>
-              <div class="form-check form-check-inline" name="birthday">
-                {{ Form::selectRange('form_month', 1, 12) }}
-                <label class="form-check-lable col-form-label">月</label>             
-              </div>
-            </div>
-
           
             <div class="form-group">
               <label for="user-gender" class="col-form-label col-md-2 text-md-center">性別</label>
