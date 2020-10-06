@@ -25,10 +25,6 @@ class UsersProfileEdit extends FormRequest
     public function rules()
     {
 
-        $man   = "男";
-        $woman = "女";
-        $other = "その他";
-
         return [
             'name' => 'required|string|max:30',
             'self_introduction' => 'string|max:300'

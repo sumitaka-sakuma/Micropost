@@ -29,8 +29,10 @@ class UsersController extends Controller
     public function edit($id){
 
         $user = User::find($id);
-        
-        return view('users.edit', compact('user'));
+
+        $user_birthday= explode('-', $user->birthday);
+        //dd($user_birthday);
+        return view('users.edit', compact('user','user_birthday'));
     }
 
     public function update(UsersProfileEdit $request, $id){
