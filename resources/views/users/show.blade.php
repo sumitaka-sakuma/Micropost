@@ -6,14 +6,14 @@
   <div class="row">
     <div class="column col-md-10">
       <div class="card">
-        <div class="card-header">ユーザー詳細</div>
+        <div class="card-header">プロフィール</div>
           <div class="card-body">
 
           <form method="GET" action="{{ route('users.index')}}">
           @csrf
             <div class="form-group">
               <div class="text-left">
-                <input class="btn btn-info " type="submit" value="戻る"> 
+                <input class="btn btn-info " type="submit" value="ユーザー一覧"> 
               </div>
             </div>
           </form>
@@ -47,6 +47,19 @@
               </div>
             </div>
           </form>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">投稿一覧</th>    
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+              </tr>
+            </tdoby>
+          </table>
 
           </div>
         </div>
