@@ -25,7 +25,7 @@
             <label for="profile_image">プロフィール画像</label>
 
             <label for="profile_image" class="btn">
-              <img src="{{ asset('storage/profiles/'.$user->profile_image) }}" id="img">
+              <img src="{{ asset('storage/profiles/'.$user->profile_image) }}" id="img" style="width:100px; height:100px;">
               <input id="profile_image" type="file"  name="profile_image" onchange="previewImage(this);">
             </label>
 
@@ -92,14 +92,13 @@
 </div>
 
 <script>
-  function previewImage(obj)
-  {
+function previewImage(obj){
     var fileReader = new FileReader();
     fileReader.onload = (function() {
       document.getElementById('img').src = fileReader.result;
     });
     fileReader.readAsDataURL(obj.files[0]);
-  }
+}
 </script>
 
 @endsection

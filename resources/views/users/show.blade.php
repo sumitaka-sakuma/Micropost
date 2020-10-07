@@ -6,7 +6,7 @@
   <div class="row">
     <div class="column col-md-10">
       <div class="card">
-        <div class="card-header">プロフィール</div>
+        <div class="card-header">{{ $user->name }}のプロフィール</div>
           <div class="card-body">
 
           <form method="GET" action="{{ route('users.index')}}">
