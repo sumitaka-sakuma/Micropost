@@ -54,9 +54,9 @@ class UsersController extends Controller
 
         //年、月、日に分割された誕生日を連結する。
         $user->birthday = $user->birthday[0].'-'.$user->birthday[1].'-'.$user->birthday[2];
-
         $profileImage = $request->file('profile_image');
-        //dd($profileImage);
+        
+        //画像のリサイズ、保存の処理を呼び出す。
         $user->profile_image = $this->saveProfileImage($profileImage, $id);
        
         $user->save();
@@ -73,19 +73,22 @@ class UsersController extends Controller
         return redirect('users/index');
     }
 
+    //画像のリサイズ、保存の処理
     private function saveProfileImage($profileImage, $id){
 
-        //dd($profileImage);
         $img = Image::make($profileImage);
-        // resize
+        
+        //リサイズ
         $img->fit(100, 100, function($constraint){
             $constraint->upsize(); 
         });
-        // save
+        
+        //保存
         $file_name = 'profile_'.$id.'.'.$profileImage->getClientOriginalExtension();
         $save_path = 'public/profiles/'.$file_name;
         Storage::put($save_path, (string) $img->encode());
-        // return file name
+        
+        //ファイル名を返す
         return $file_name;
 
     }
