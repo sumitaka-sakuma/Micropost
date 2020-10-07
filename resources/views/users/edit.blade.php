@@ -59,11 +59,11 @@
             <div class="form-group">
               <label for="user-gender" class="col-form-label col-md-2 text-md-center">性別</label>
               <div class="form-check form-check-inline">
-                <input type="radio" class="form-check-input" name="gender" value="0">
+                <input type="radio" class="form-check-input" name="gender" value="0" @if($user->gender === 0) checked @endif>
                 <label class="form-check-lable col-form-label">男性</label>
               </div>
               <div class="form-check form-check-inline">
-                <input type="radio" class="form-check-input" name="gender" value="1">
+                <input type="radio" class="form-check-input" name="gender" value="1" @if($user->gender === 1) checked @endif>
                 <label class="form-check-label col-form-label">女性</label>
               </div>
             </div>

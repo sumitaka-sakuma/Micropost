@@ -18,7 +18,7 @@
             </div>
           </form>
         
-          <img src="{{ asset('storage/profiles/'.$user->profile_image) }}" alt="プロフィール画像">          
+          <img src="{{ asset('storage/profiles/'.$user->profile_image) }}" alt="プロフィール画像" style="width:100px; height:100px;">          
 
           <table class="table">
             <thead>
@@ -35,7 +35,7 @@
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->birthday }}</td>
-                <td>{{ $user->gender }}</td>
+                <td>{{ $gender}}</td>
                 <td>{{ $user->self_introduction }}</td>
               </tr>
             </tdoby>

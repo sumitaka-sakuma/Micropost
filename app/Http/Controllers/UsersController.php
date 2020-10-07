@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Services\FormCheck;
 use App\Http\Requests\UsersProfileEdit;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -30,7 +31,9 @@ class UsersController extends Controller
 
         $user = User::find($id);
 
-        return view('users.show', compact('user'));
+        $gender = FormCheck::checkGender($user->gender);
+        
+        return view('users.show', compact('user', 'gender'));
     }
 
     public function edit($id){
