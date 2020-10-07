@@ -12,7 +12,7 @@
               <tbody>
                 @foreach($users as $user)
                 <tr>
-                  <td>{{ $user->id }}</td>
+                  <td><img src="{{ asset('storage/profiles/'.$user->profile_image) }}" style="width:100px; height:100px;"></td>
                   <td><a href="{{ route('users.show', ['id' => $user->id ]) }}">{{ $user->name }}</a></td>
                 @endforeach
                 </tr>

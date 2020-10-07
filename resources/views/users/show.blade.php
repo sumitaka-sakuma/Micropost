@@ -23,7 +23,6 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">ID</th>
                 <th scope="col">ユーザー名</th>   
                 <th scope="col">生年月日</th>
                 <th scope="col">性別</th>
@@ -32,7 +31,6 @@
             </thead>
             <tbody>
               <tr>
-                <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->birthday }}</td>
                 <td>{{ $gender}}</td>
@@ -41,14 +39,16 @@
             </tdoby>
           </table>  
 
-          <form method="GET" action="{{ route('users.edit', ['id' => $user->id ])}}">
-            @csrf
-            <div class="form-group">
-              <div class="text-right">
-                <input class="btn btn-info " type="submit" value="編集"> 
+          @if(Auth::id() === $user->id)
+            <form method="GET" action="{{ route('users.edit', ['id' => $user->id ])}}">
+              @csrf
+              <div class="form-group">
+                <div class="text-right">
+                  <input class="btn btn-info " type="submit" value="編集"> 
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          @endif
 
           <table class="table">
             <thead>

@@ -19,7 +19,7 @@ class UsersController extends Controller
         $current_user_id = Auth::id();
 
         $users = DB::table('users')
-                   ->select('id', 'name', 'created_at')
+                   ->select('id', 'name', 'created_at', 'profile_image')
                    ->where('id', '<', $current_user_id)
                    ->orderBy('created_at', 'desc')
                    ->paginate(10);
@@ -38,7 +38,7 @@ class UsersController extends Controller
 
     public function edit($id){
 
-        $user = User::find($id);
+        $user = Auth::user();
 
         //誕生日を年、月、日に分割する。
         $user_birthday= explode('-', $user->birthday);
@@ -48,7 +48,7 @@ class UsersController extends Controller
 
     public function update(UsersProfileEdit $request, $id){
 
-        $user = User::find($id);
+        $user = Auth::user();
 
         $user->name = $request->input('name');
         $user->birthday = $request->input('birthday');
