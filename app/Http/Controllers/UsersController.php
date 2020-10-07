@@ -6,13 +6,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Http\Requests\UsersProfileEdit;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
-{
+{       
+
     public function index(){
+
+        $current_user_id = Auth::id();
 
         $users = DB::table('users')
                    ->select('id', 'name', 'created_at')
+                   ->where('id', '<', $current_user_id)
                    ->orderBy('created_at', 'desc')
                    ->paginate(10);
 
