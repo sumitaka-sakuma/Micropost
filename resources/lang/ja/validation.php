@@ -123,6 +123,7 @@ return [
         'birthday'          => '誕生日',
         'gender'            => '性別',
         'self_introduction' => '自己紹介',
+        'profile_image'     => 'プロフィール画像',
     ],
 
 ];

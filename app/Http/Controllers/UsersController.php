@@ -57,7 +57,9 @@ class UsersController extends Controller
         $profileImage = $request->file('profile_image');
         
         //画像のリサイズ、保存の処理を呼び出す。
-        $user->profile_image = $this->saveProfileImage($profileImage, $id);
+        if($profileImage != null){
+            $user->profile_image = $this->saveProfileImage($profileImage, $id);
+        }
        
         $user->save();
 
@@ -76,8 +78,7 @@ class UsersController extends Controller
     //画像のリサイズ、保存の処理
     private function saveProfileImage($profileImage, $id){
 
-        $img = Image::make($profileImage);
-        
+        $img = \Image::make($profileImage);
         //リサイズ
         $img->fit(100, 100, function($constraint){
             $constraint->upsize(); 
