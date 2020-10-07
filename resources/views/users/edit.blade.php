@@ -19,8 +19,15 @@
               </div>
             @endif
 
-            <form method="POST" action="{{ route('users.update', ['id' => $user->id ])}}">
+            <form method="POST" action="{{ route('users.update', ['id' => $user->id ])}}" enctype="multipart/form-data">
             @csrf
+
+            <label for="profile_image">プロフィール画像</label>
+
+            <label for="profile_image" class="btn">
+              <img src="{{ asset('storage/profiles/'.$user->profile_image) }}" id="img">
+              <input id="profile_image" type="file"  name="profile_image" onchange="previewImage(this);">
+            </label>
 
             <div class="form-group row">
               <label for="user-name" class="col-form-label col-md-2 text-md-center">ユーザー名</label>
@@ -83,4 +90,16 @@
     </div>
   </div>
 </div>
+
+<script>
+  function previewImage(obj)
+  {
+    var fileReader = new FileReader();
+    fileReader.onload = (function() {
+      document.getElementById('img').src = fileReader.result;
+    });
+    fileReader.readAsDataURL(obj.files[0]);
+  }
+</script>
+
 @endsection

@@ -17,10 +17,8 @@
               </div>
             </div>
           </form>
-          
         
-          <img src="{{ asset('storage/profiles/'.$user->profile_image) }}" alt="プロフィール画像">
-          
+          <img src="{{ asset('storage/profiles/'.$user->profile_image) }}" alt="プロフィール画像">          
 
           <table class="table">
             <thead>

@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Http\Requests\UsersProfileEdit;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class UsersController extends Controller
 {       
@@ -52,7 +54,11 @@ class UsersController extends Controller
 
         //年、月、日に分割された誕生日を連結する。
         $user->birthday = $user->birthday[0].'-'.$user->birthday[1].'-'.$user->birthday[2];
-        
+
+        $profileImage = $request->file('profile_image');
+        //dd($profileImage);
+        $user->profile_image = $this->saveProfileImage($profileImage, $id);
+       
         $user->save();
 
         return redirect('users/index');
@@ -65,5 +71,22 @@ class UsersController extends Controller
         $user->delete();
 
         return redirect('users/index');
+    }
+
+    private function saveProfileImage($profileImage, $id){
+
+        //dd($profileImage);
+        $img = Image::make($profileImage);
+        // resize
+        $img->fit(100, 100, function($constraint){
+            $constraint->upsize(); 
+        });
+        // save
+        $file_name = 'profile_'.$id.'.'.$profileImage->getClientOriginalExtension();
+        $save_path = 'public/profiles/'.$file_name;
+        Storage::put($save_path, (string) $img->encode());
+        // return file name
+        return $file_name;
+
     }
 }
