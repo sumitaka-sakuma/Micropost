@@ -17,7 +17,7 @@ class UsersController extends Controller
     public function index(){
 
         $current_user_id = Auth::id();
-
+       
         $users = DB::table('users')
                    ->select('id', 'name', 'created_at', 'profile_image')
                    ->where('id', '<', $current_user_id)
@@ -57,6 +57,7 @@ class UsersController extends Controller
 
         //年、月、日に分割された誕生日を連結する。
         $user->birthday = $user->birthday[0].'-'.$user->birthday[1].'-'.$user->birthday[2];
+
         $profileImage = $request->file('profile_image');
         
         //画像のリサイズ、保存の処理を呼び出す。

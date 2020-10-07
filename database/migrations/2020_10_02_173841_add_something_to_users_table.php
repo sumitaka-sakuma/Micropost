@@ -15,9 +15,9 @@ class AddSomethingToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             
-            $table->date('birthday')->nullable($value = true)->after('name');
-            $table->boolean('gender')->nullable($value = true)->after('birthday');
-            $table->longText('self_introduction')->nullable($value = true)->after('gender');
+            $table->date('birthday')->nullable()->after('name');
+            $table->boolean('gender')->nullable()->after('birthday');
+            $table->longText('self_introduction')->nullable()->after('gender');
             
         });
     }

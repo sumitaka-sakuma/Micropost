@@ -4,15 +4,13 @@ namespace App\Services;
 
 class FormCheck{
 
-    public static function checkGender($data){
+    public static function checkGender($gender){
 
-        $gender = '';
-
-        if($data === 0){
+        if($gender === 0){
             $gender = '男性';
         }
 
-        if($data === 1){
+        if($gender === 1){
             $gender = '女性';
         }
 

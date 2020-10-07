@@ -55,10 +55,19 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('users.show', ['id' => Auth::id() ]) }}">
+                                        {{ __('マイプロフィール') }}
+                                    </a>
+
+                                    <form action="{{ route('users.show', ['id' => Auth::id() ]) }}" method="GET" class="d-none">
+                                        @csrf
+                                    </form>
+
+                                
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('ログアウト') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
