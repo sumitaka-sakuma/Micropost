@@ -8,15 +8,6 @@
       <div class="card">
         <div class="card-header">{{ $user->name }}のプロフィール</div>
           <div class="card-body">
-
-          <form method="GET" action="{{ route('users.index')}}">
-          @csrf
-            <div class="form-group">
-              <div class="text-left">
-                <input class="btn btn-info " type="submit" value="ユーザー一覧"> 
-              </div>
-            </div>
-          </form>
         
           <img src="{{ asset('storage/profiles/'.$user->profile_image) }}" alt="プロフィール画像" style="width:100px; height:100px;">          
 
@@ -26,6 +17,7 @@
                 <th scope="col">ユーザー名</th>   
                 <th scope="col">生年月日</th>
                 <th scope="col">年齢</th>
+                <th scope="col">年齢</th>
                 <th scope="col">性別</th>
                 <th scope="col">自己紹介</th>   
              </tr>
@@ -34,7 +26,11 @@
               <tr>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->birthday }}</td>
-                <td>{{ $age->y }}歳</td>
+                @if(empty($user->birthday))
+                  <td></td>
+                @else
+                  <td>{{ $age->y }}歳</td>
+                @endif
                 <td>{{ $gender}}</td>
                 <td>{{ $user->self_introduction }}</td>
               </tr>
