@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Mocropost;
 use App\Services\UserAge;
 use App\Services\FormCheck;
 use App\Http\Requests\UsersProfileEdit;

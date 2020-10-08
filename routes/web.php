@@ -17,6 +17,16 @@ Route::group(['prefix' =>'users', 'middleware' => 'auth'], function(){
 
 });
 
+Route::group(['prefix' =>'microposts', 'middleware' => 'auth'], function(){
+
+    Route::get('create', 'MicropostsController@create')->name('microposts.create');
+    Route::post('store', 'MicropostsController@store')->name('microposts.store');
+    Route::get('edit/{id}', 'MicropostsController@edit')->name('microposts.edit');
+    Route::post('update/{id}', 'MicropostsController@update')->name('microposts.update');
+    Route::post('destory/{id}', 'MicropostsController@destory')->name('microposts.destory');
+
+});
+
 
 Auth::routes();
 
