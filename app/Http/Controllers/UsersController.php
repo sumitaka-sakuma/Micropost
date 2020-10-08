@@ -17,6 +17,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 class UsersController extends Controller
 {       
 
+    //ユーザー一覧
     public function index(Request $request){
 
         $current_user_id = Auth::id();
@@ -48,6 +49,7 @@ class UsersController extends Controller
         return view('users.index', compact('users', 'search'));
     }
 
+    //プロフィール
     public function show($id){
 
         $user = User::find($id);
@@ -61,6 +63,7 @@ class UsersController extends Controller
         return view('users.show', compact('user', 'gender', 'age'));
     }
 
+    //プロフィールの編集
     public function edit($id){
 
         $user = Auth::user();
@@ -71,6 +74,7 @@ class UsersController extends Controller
         return view('users.edit', compact('user','user_birthday'));
     }
 
+    //プロフィールの更新
     public function update(UsersProfileEdit $request, $id){
 
         $user = Auth::user();
@@ -95,6 +99,7 @@ class UsersController extends Controller
         return redirect('users/index');
     }
 
+    //ユーザーの削除
     public function destroy($id){
 
         $user = User::find($id);
