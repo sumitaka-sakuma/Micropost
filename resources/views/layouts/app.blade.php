@@ -64,6 +64,13 @@
                                     <form action="{{ route('users.show', ['id' => Auth::id() ]) }}" method="GET" class="d-none">
                                         @csrf
                                     </form>
+
+                                    <a class="dropdown-item" href="{{ route('microposts.create', ['id' => Auth::id() ]) }}">
+                                        {{ __('投稿する') }}
+                                    </a>
+                                    <form action="{{ route('microposts.create', ['id' => Auth::id() ]) }}" method="GET" class="d-none">
+                                        @csrf
+                                    </form>
                                 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
