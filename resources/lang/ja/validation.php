@@ -54,7 +54,7 @@ return [
     'max'                  => [
         'numeric' => ':attributeには:max以下の数値を指定してください。',
         'file'    => ':attributeには:max KB以下のファイルを指定してください。',
-        'string'  => ':attributeには:max文字以下の文字列を指定してください。',
+        'string'  => ':attributeは:max文字以下で入力してください。',
         'array'   => ':attributeには:max個以下の要素を持つ配列を指定してください。',
     ],
     'mimes'                => ':attributeには:valuesのうちいずれかの形式のファイルを指定してください。',
@@ -119,7 +119,7 @@ return [
 
     'attributes' => [
         'password'          => 'パスワード',
-        'name'              => '名前',
+        'name'              => 'ユーザー名',
         'birthday'          => '誕生日',
         'gender'            => '性別',
         'self_introduction' => '自己紹介',

@@ -9,16 +9,6 @@
         <div class="card-header">プロフィール編集</div>
           <div class="card-body">
           
-            @if ($errors->any())
-              <div class="alert alert-danger">
-                <ul>
-                  @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                  @endforeach
-                </ul>
-              </div>
-            @endif
-
             <form method="POST" action="{{ route('users.update', ['id' => $user->id ])}}" enctype="multipart/form-data">
             @csrf
 
@@ -32,7 +22,14 @@
             <div class="form-group row">
               <label for="user-name" class="col-form-label col-md-2 text-md-center">ユーザー名</label>
               <div class="col-md-10">
-                <input type="text" class="form-control" name="name" value="{{ $user->name }}">
+                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}">
+                
+                @error('name')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+
               </div>
             </div>
             <br>
@@ -40,15 +37,15 @@
             <div class="form-group row">
               <label for="user-birthday" class="col-form-label col-md-2 text-md-center">生年月日</label>
               <div class="col-md-10">
-                <div class="form-check form-check-inline">
+                <div class="form-check form-check-inline @error('birthday') is-invalid @enderror">
                   {{ Form::selectRange('birthday[0]', 1900, 2020, $user->birthday[0], ['placeholder' => '年を入力してください']) }}
                   <label class="form-check-lable col-form-label">年</label>             
                 </div>
-                <div class="form-check form-check-inline">
+                <div class="form-check form-check-inline @error('birthday') is-invalid @enderror">
                   {{ Form::selectRange('birthday[1]', 01, 12, $user->birthday[1], ['placeholder' => '月を入力してください']) }}
                   <label class="form-check-lable col-form-label">月</label>             
                 </div>
-                <div class="form-check form-check-inline">
+                <div class="form-check form-check-inline @error('birthday') is-invalid @enderror">
                   {{ Form::selectRange('birthday[2]', 01, 31, $user->birthday[2], ['placeholder' => '日 を入力してください']) }}
                   <label class="form-check-lable col-form-label">日</label>             
                 </div>
@@ -72,7 +69,14 @@
             <div class="form-group row">
               <label for="user-self_introduction" class="col-form-label col-md-2 text-md-center">自己紹介</label>
               <div class="col-md-10">
-                <textarea class="form-control" name="self_introduction">{{ $user->self_introduction }}</textarea>
+                <textarea class="form-control @error('self_introduction') is-invalid @enderror" name="self_introduction">{{ $user->self_introduction }}</textarea>
+
+                @error('self_introduction')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+
               </div>
             </div>
             <br>
