@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Services\FormCheck;
 use App\Http\Requests\UsersProfileEdit;
@@ -49,9 +50,16 @@ class UsersController extends Controller
 
         $user = User::find($id);
 
+        $birthday = Carbon::createFromDate($user->birthday);
+        $now = Carbon::now();
+        
+        //ユーザーの誕生日と現在の日付の差分を求める
+        $age = $birthday->diff($now);
+        
+
         $gender = FormCheck::checkGender($user->gender);
         
-        return view('users.show', compact('user', 'gender'));
+        return view('users.show', compact('user', 'gender', 'age'));
     }
 
     public function edit($id){

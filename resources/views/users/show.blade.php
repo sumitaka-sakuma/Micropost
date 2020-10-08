@@ -25,6 +25,7 @@
               <tr>
                 <th scope="col">ユーザー名</th>   
                 <th scope="col">生年月日</th>
+                <th scope="col">年齢</th>
                 <th scope="col">性別</th>
                 <th scope="col">自己紹介</th>   
              </tr>
@@ -33,6 +34,7 @@
               <tr>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->birthday }}</td>
+                <td>{{ $age->y }}歳</td>
                 <td>{{ $gender}}</td>
                 <td>{{ $user->self_introduction }}</td>
               </tr>
