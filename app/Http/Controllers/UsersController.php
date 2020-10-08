@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Services\UserAge;
 use App\Services\FormCheck;
@@ -65,7 +66,7 @@ class UsersController extends Controller
 
         //誕生日を年、月、日に分割する。
         $user_birthday= explode('-', $user->birthday);
-        
+
         return view('users.edit', compact('user','user_birthday'));
     }
 

@@ -41,7 +41,7 @@
               <label for="user-birthday" class="col-form-label col-md-2 text-md-center">生年月日</label>
               <div class="col-md-10">
                 <div class="form-check form-check-inline">
-                  {{ Form::selectRange('birthday[0]', 1990, 2020, $user->birthday[0], ['placeholder' => '年を入力してください']) }}
+                  {{ Form::selectRange('birthday[0]', 1900, 2020, $user->birthday[0], ['placeholder' => '年を入力してください']) }}
                   <label class="form-check-lable col-form-label">年</label>             
                 </div>
                 <div class="form-check form-check-inline">
