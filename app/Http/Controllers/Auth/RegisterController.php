@@ -41,6 +41,11 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function redirectPath(){
+
+        return 'users/index';
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
