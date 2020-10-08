@@ -31,5 +31,10 @@ class MicropostsController extends Controller
 
     public function destroy($id){
 
+        $micropost = Micropost::find($id);
+
+        $micropost->delete();
+
+        return redirect('users/index');
     }
 }
