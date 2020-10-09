@@ -45,6 +45,6 @@ class User extends Authenticatable
 
     public function microposts(){
 
-        return $this->hasMany('App\Models\Micropost');
+        return $this->hasMany(Micropost::class);
     }
 }

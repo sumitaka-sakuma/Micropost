@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\User;
-use App\Models\Mocropost;
+use App\Models\Micropost;
 use App\Services\UserAge;
 use App\Services\FormCheck;
 use App\Http\Requests\UsersProfileEdit;
@@ -18,7 +18,7 @@ class UsersController extends Controller
 {       
 
     //ユーザー一覧
-    public function index(Request $request, User $user){
+    public function index(Request $request){
 
         $search = $request->input('search');
 
