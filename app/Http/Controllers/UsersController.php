@@ -22,8 +22,6 @@ class UsersController extends Controller
 
         $search = $request->input('search');
 
-        
-
         //検索フォーム
         $query = DB::table('users');
         
@@ -102,9 +100,12 @@ class UsersController extends Controller
             $user->profile_image = $this->saveProfileImage($profileImage, $id);
         }
        
-        $user->save();
+        if($user->save()){
+            return redirect('users/show/'.Auth::id());
+        }else{
+            return redirect('users/edit/'.Auth::id()); 
+        }
 
-        return redirect('users/index');
     }
 
     //ユーザーの削除
@@ -112,9 +113,12 @@ class UsersController extends Controller
 
         $user = User::find($id);
 
-        $user->delete();
+        if($user->delete()){
+            return redirect('users/index');
+        }else{
+            return redirect('users/show/'.$id);
+        }
 
-        return redirect('users/index');
     }
 
     //画像のリサイズ、保存の処理

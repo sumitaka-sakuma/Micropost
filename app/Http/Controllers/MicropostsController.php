@@ -28,9 +28,11 @@ class MicropostsController extends Controller
         $micropost->user_id = Auth::id();
         $micropost->content = $request->input('content');
 
-        $micropost->save();
-
-        return redirect('users/index');
+        if($micropost->save()){
+            return redirect('users/show/'.Auth::id());
+        }else{
+            return redirect('micropost/create');
+        }
     }
     
     //投稿の編集
@@ -48,9 +50,11 @@ class MicropostsController extends Controller
 
         $micropost->content = $request->input('content');
 
-        $micropost->save();
-
-        return redirect('users/show/'.Auth::id());
+        if($micropost->save()){
+            return redirect('users/show/'.Auth::id());
+        }else{
+            return redirect('micropost/edit/'.$id);
+        }
     }
 
     //投稿の削除
@@ -58,8 +62,11 @@ class MicropostsController extends Controller
 
         $micropost = Micropost::find($id);
 
-        $micropost->delete();
-
-        return redirect('users/index');
+        if($micropost->delete()){
+            return redirect('users/show/'.Auth::id());
+        }else{
+            return redirect('micropost/create');
+        }
     }
+
 }
