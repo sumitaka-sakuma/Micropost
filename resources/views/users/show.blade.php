@@ -9,14 +9,13 @@
         <div class="card-header">{{ $user->name }}のプロフィール</div>
           <div class="card-body">
         
-          <img src="{{ asset('storage/profiles/'.$user->profile_image) }}" alt="プロフィール画像" style="width:100px; height:100px;">          
+          <img src="{{ asset('storage/profiles/'.$user->profile_image) }}" alt="プロフィール画像" style="width:100px; height:100px;">
 
           <table class="table">
             <thead>
               <tr>
                 <th scope="col">ユーザー名</th>   
                 <th scope="col">生年月日</th>
-                <th scope="col">年齢</th>
                 <th scope="col">年齢</th>
                 <th scope="col">性別</th>
                 <th scope="col">自己紹介</th>   
@@ -48,15 +47,21 @@
             </form>
           @endif
 
+          <label>これまで{{ $microposts->count() }}件投稿しています。</label>
+
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">投稿一覧</th>    
+                <th scope="col">投稿一覧</th> 
+                <th scope="col"></th>   
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td></td>
+              @foreach($microposts as $micropost)
+                <tr>
+                  <td>{{ $micropost->content}}</td>
+                  <td>{{ $micropost->created_at}}</td>
+              @endforeach
               </tr>
             </tdoby>
           </table>

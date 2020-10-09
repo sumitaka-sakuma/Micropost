@@ -18,11 +18,11 @@ class UsersController extends Controller
 {       
 
     //ユーザー一覧
-    public function index(Request $request){
-
-        $current_user_id = Auth::id();
+    public function index(Request $request, User $user){
 
         $search = $request->input('search');
+
+        
 
         //検索フォーム
         $query = DB::table('users');
@@ -54,13 +54,21 @@ class UsersController extends Controller
 
         $user = User::find($id);
 
+        $user_id = $user->id;
+        
+        $microposts = DB::table('microposts')
+                       ->select('user_id', 'content', 'created_at')
+                       ->where('user_id', '=', $user_id)
+                       ->orderBy('created_at', 'desc')
+                       ->get();
+
         //ユーザーの誕生日から年齢を求める
         $age = UserAge::userAge($user->birthday);
 
         //チェックボックスの値０、１をそれぞれ男性、女性に変換する。
         $gender = FormCheck::checkGender($user->gender);
         
-        return view('users.show', compact('user', 'gender', 'age'));
+        return view('users.show', compact('user', 'gender', 'age', 'microposts'));
     }
 
     //プロフィールの編集

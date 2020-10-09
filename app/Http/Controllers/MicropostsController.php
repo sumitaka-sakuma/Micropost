@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class MicropostsController extends Controller
 {
-    
+
     public function create(){
 
         return view('microposts.create');
