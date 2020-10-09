@@ -57,7 +57,7 @@ class UsersController extends Controller
         $user_id = $user->id;
         
         $microposts = DB::table('microposts')
-                       ->select('user_id', 'content', 'created_at')
+                       ->select('id', 'user_id', 'content', 'created_at', 'updated_at')
                        ->where('user_id', '=', $user_id)
                        ->orderBy('created_at', 'desc')
                        ->get();

@@ -74,6 +74,16 @@
                 <tr>
                   <td>{{ $micropost->content}}</td>
                   <td>{{ $micropost->created_at}}</td>
+                  <td>
+                    <form method="POST" action="{{ route('microposts.destroy', ['id' => $micropost->id ])}}" id="delete_{{ $micropost->id }}">
+                    @csrf
+                      <div class="form-group">
+                        <div class="text-right">
+                          <input class="btn btn-danger " type="submit" value="削除"> 
+                        </div>
+                      </div>
+                    </form>
+                  </td>
               @endforeach
               </tr>
             </tdoby>
@@ -86,3 +96,12 @@
   </div>
 </div>
 @endsection
+
+<!-- <script>
+function deletePost(e){
+    'use strict'
+    if(confirm('本当に削除してもよろしいですか？')){
+        document.getElementById('delete_' + e.dataset.id).submit();
+    }
+}
+</script> -->

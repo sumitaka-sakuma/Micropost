@@ -13,7 +13,7 @@ Route::group(['prefix' =>'users', 'middleware' => 'auth'], function(){
     Route::get('show/{id}', 'UsersController@show')->name('users.show');
     Route::get('edit/{id}', 'UsersController@edit')->name('users.edit');
     Route::post('update/{id}', 'UsersController@update')->name('users.update');
-    Route::post('destory/{id}', 'UsersController@destory')->name('users.destory');
+    Route::post('destroy/{id}', 'UsersController@destroy')->name('users.destroy');
 
 });
 
@@ -23,7 +23,7 @@ Route::group(['prefix' =>'microposts', 'middleware' => 'auth'], function(){
     Route::post('store', 'MicropostsController@store')->name('microposts.store');
     Route::get('edit/{id}', 'MicropostsController@edit')->name('microposts.edit');
     Route::post('update/{id}', 'MicropostsController@update')->name('microposts.update');
-    Route::post('destory/{id}', 'MicropostsController@destory')->name('microposts.destory');
+    Route::post('destroy/{id}', 'MicropostsController@destroy')->name('microposts.destroy');
 
 });
 
