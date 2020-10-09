@@ -37,14 +37,27 @@
           </table>  
 
           @if(Auth::id() === $user->id)
-            <form method="GET" action="{{ route('users.edit', ['id' => $user->id ])}}">
-              @csrf
-              <div class="form-group">
-                <div class="text-right">
-                  <input class="btn btn-info " type="submit" value="編集"> 
-                </div>
+            <div class="btn-toolbar">
+              <div class="btn-group">
+                <form method="GET" action="{{ route('users.edit', ['id' => $user->id ])}}">
+                  @csrf
+                  <div class="form-group">
+                    <div class="text-right">
+                      <input class="btn btn-info " type="submit" value="編集"> 
+                    </div>
+                  </div>
+                </form>
+
+                <form method="GET" action="{{ route('microposts.create', ['id' => $user->id ])}}">
+                  @csrf
+                  <div class="form-group">
+                    <div class="text-right">
+                      <input class="btn btn-secondary " type="submit" value="投稿"> 
+                    </div>
+                  </div>
+                </form>
               </div>
-            </form>
+            </div>
           @endif
 
           <label>これまで{{ $microposts->count() }}件投稿しています。</label>

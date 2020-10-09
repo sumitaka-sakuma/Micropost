@@ -124,6 +124,7 @@ return [
         'gender'            => '性別',
         'self_introduction' => '自己紹介',
         'profile_image'     => 'プロフィール画像',
+        'content'           => '投稿内容',
     ],
 
 ];

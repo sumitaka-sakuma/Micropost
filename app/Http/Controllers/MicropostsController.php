@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Micropost;
+use App\Http\Requests\ContentValidation;
 use Illuminate\Support\Facades\Auth;
 
 class MicropostsController extends Controller
@@ -13,11 +14,13 @@ class MicropostsController extends Controller
 
     public function create(){
 
-        return view('microposts.create');
+        $user = User::find(Auth::id());
+
+        return view('microposts.create', compact('user'));
     }
     
     
-    public function store(Request $request){
+    public function store(ContentValidation $request){
 
         $micropost = new Micropost();
         
