@@ -34,6 +34,9 @@ class MicropostsController extends Controller
     
     public function edit($id){
 
+        $micropost = Micropost::find($id);
+
+        return view('microposts.edit', compact('micropost'));
     }
 
     public function update(Request $request, $id){
