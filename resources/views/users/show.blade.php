@@ -74,26 +74,28 @@
                 <tr>
                   <td>{{ $micropost->content}}</td>
                   <td>{{ $micropost->created_at}}</td>
-                  <td>
-                    <form method="GET" action="{{ route('microposts.edit', ['id' => $micropost->id ])}}">
+                  @if(Auth::id() === $user->id)
+                    <td>
+                      <form method="GET" action="{{ route('microposts.edit', ['id' => $micropost->id ])}}">
+                        @csrf
+                        <div class="form-group">
+                          <div class="text-right">
+                            <input class="btn btn-info" type="submit" value="編集"> 
+                          </div>
+                        </div>
+                      </form>
+                    </td>
+                    <td>
+                      <form method="POST" action="{{ route('microposts.destroy', ['id' => $micropost->id ])}}" id="delete_{{ $micropost->id }}">
                       @csrf
-                      <div class="form-group">
-                        <div class="text-right">
-                          <input class="btn btn-info" type="submit" value="編集"> 
+                        <div class="form-group">
+                          <div class="text-right">
+                            <input class="btn btn-danger " type="submit" value="削除"> 
+                          </div>
                         </div>
-                      </div>
-                    </form>
-                  </td>
-                  <td>
-                    <form method="POST" action="{{ route('microposts.destroy', ['id' => $micropost->id ])}}" id="delete_{{ $micropost->id }}">
-                    @csrf
-                      <div class="form-group">
-                        <div class="text-right">
-                          <input class="btn btn-danger " type="submit" value="削除"> 
-                        </div>
-                      </div>
-                    </form>
-                  </td>
+                      </form>
+                    </td>
+                  @endif
               @endforeach
               </tr>
             </tdoby>

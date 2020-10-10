@@ -100,12 +100,10 @@ class UsersController extends Controller
             $user->profile_image = $this->saveProfileImage($profileImage, $id);
         }
        
-        if($user->save()){
-            return redirect('users/show/'.Auth::id());
-        }else{
-            return redirect('users/edit/'.Auth::id()); 
-        }
-
+        $user->save();
+        
+        return redirect('users/show/'.Auth::id());
+    
     }
 
     //ユーザーの削除
