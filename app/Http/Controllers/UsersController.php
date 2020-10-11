@@ -121,14 +121,15 @@ class UsersController extends Controller
     }
 
     //フォロー
-    public function follow(User $user){
+    public function follow($id){
 
+        $user = User::find($id);
         $follower = auth()->user();
 
-        $is_follower = $follower->isFollowing($user->id);
+        $is_following = $follower->isFollowing($user->id);
 
         //フォローしていなければフォローする
-        if(!is_following){
+        if(!$is_following){
 
             $follower->follow($user->id);
             return back();
@@ -136,8 +137,9 @@ class UsersController extends Controller
     }
 
     //フォロー解除
-    public function unfollow(User $user){
+    public function unfollow($id){
 
+        $user = User::find($id);
         $follower = auth()->user();
 
         $is_following = $follower->isFollowing($user->id);

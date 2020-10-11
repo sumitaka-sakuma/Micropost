@@ -41,6 +41,7 @@
                       @if(auth()->user()->isFollowing($user->id))
                         <form method="POST" action="{{ route('unfollow', ['id' => $user->id ])}}">
                         @csrf
+                        {{ method_field('DELETE') }}
                         
                           <div class="form-group">
                             <div class="text-right">
