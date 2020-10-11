@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Micropost;
+use App\Models\Follower;
 use App\Services\UserAge;
 use App\Services\FormCheck;
 use App\Http\Requests\UsersProfileEdit;
@@ -117,6 +118,35 @@ class UsersController extends Controller
             return redirect('users/show/'.$id);
         }
 
+    }
+
+    //フォロー
+    public function follow(User $user){
+
+        $follower = auth()->user();
+
+        $is_follower = $follower->isFollowing($user->id);
+
+        //フォローしていなければフォローする
+        if(!is_following){
+
+            $follower->follow($user->id);
+            return back();
+        }
+    }
+
+    //フォロー解除
+    public function unfollow(User $user){
+
+        $follower = auth()->user();
+
+        $is_following = $follower->isFollowing($user->id);
+
+        if($is_following){
+
+            $follower->unfollow($user->id);
+            return back();
+        }
     }
 
     //画像のリサイズ、保存の処理

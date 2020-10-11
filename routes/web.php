@@ -15,6 +15,9 @@ Route::group(['prefix' =>'users', 'middleware' => 'auth'], function(){
     Route::post('update/{id}', 'UsersController@update')->name('users.update');
     Route::post('destroy/{id}', 'UsersController@destroy')->name('users.destroy');
 
+    Route::post('{user}/follow', 'UsersController@follow')->name('follow');
+    Route::delete('{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
+
 });
 
 Route::group(['prefix' =>'microposts', 'middleware' => 'auth'], function(){

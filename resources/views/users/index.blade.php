@@ -30,24 +30,35 @@
                   <td><img src="{{ asset('storage/profiles/'.$user->profile_image) }}" style="width:100px; height:100px;"></td>
                   <td><a href="{{ route('users.show', ['id' => $user->id ]) }}">{{ $user->name }}</a></td>
                   <td>
-                    <form method="POST" action="">
-                    @csrf
-                      <div class="form-group">
-                        <div class="text-right">
-                          <button type="submit" class="btn btn-danger">フォロー解除</button>
-                        </div>
+                    @if (auth()->user()->isFollowed($user->id))
+                      <div class="px-2">
+                        <span class="px-1 bg-secondary text-light">フォローされています</span>
                       </div>
-                    </form>
+                    @endif
                   </td>
                   <td>
-                    <form method="POST" action="">
-                    @csrf
-                      <div class="form-group">
-                        <div class="text-right">
-                          <button type="submit" class="btn btn-primary">フォローする</button>
-                        </div>
-                      </div>
-                    </form>
+                    <div class="d-flex justify-content-end flex-grow-1">
+                      @if(auth()->user()->isFollowing($user->id))
+                        <form method="POST" action="">
+                        @csrf
+                          <div class="form-group">
+                            <div class="text-right">
+                              <button type="submit" class="btn btn-danger">フォロー解除</button>
+                            </div>
+                          </div>
+                        </form>
+                      @endif
+                      @if(!(auth()->user()->isFollowing($user->id)))
+                        <form method="POST" action="">
+                        @csrf
+                          <div class="form-group">
+                            <div class="text-right">
+                              <button type="submit" class="btn btn-primary">フォローする</button>
+                            </div>
+                          </div>
+                        </form>
+                      @endif
+                    </div>
                   </td>
                 @endforeach
                 </tr>
