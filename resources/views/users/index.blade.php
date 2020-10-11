@@ -39,8 +39,9 @@
                   <td>
                     <div class="d-flex justify-content-end flex-grow-1">
                       @if(auth()->user()->isFollowing($user->id))
-                        <form method="POST" action="">
+                        <form method="POST" action="{{ route('unfollow', ['id' => $user->id ])}}">
                         @csrf
+                        
                           <div class="form-group">
                             <div class="text-right">
                               <button type="submit" class="btn btn-danger">フォロー解除</button>
@@ -49,7 +50,7 @@
                         </form>
                       @endif
                       @if(!(auth()->user()->isFollowing($user->id)))
-                        <form method="POST" action="">
+                        <form method="POST" action="{{ route('follow', ['id' => $user->id ])}}">
                         @csrf
                           <div class="form-group">
                             <div class="text-right">
