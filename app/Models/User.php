@@ -47,4 +47,14 @@ class User extends Authenticatable
 
         return $this->hasMany(Micropost::class);
     }
+
+    public function followers(){
+
+        return $this->belongsToMany(self::class, 'followers', 'followed_id', 'following_id');
+    }
+
+    public function folloes(){
+
+        return $this->belongsToMany(self::class, 'followers', 'following_id', 'followed_id');
+    }
 }
