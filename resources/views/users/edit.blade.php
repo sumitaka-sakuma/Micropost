@@ -37,15 +37,15 @@
             <div class="form-group row">
               <label for="user-birthday" class="col-form-label col-md-2 text-md-center">生年月日</label>
               <div class="col-md-10">
-                <div class="form-check form-check-inline @error('birthday') is-invalid @enderror">
+                <div class="form-check form-check-inline">
                   {{ Form::selectRange('birthday[0]', 1900, 2020, $user->birthday[0], ['placeholder' => '年を入力してください']) }}
                   <label class="form-check-lable col-form-label">年</label>             
                 </div>
-                <div class="form-check form-check-inline @error('birthday') is-invalid @enderror">
+                <div class="form-check form-check-inline">
                   {{ Form::selectRange('birthday[1]', 01, 12, $user->birthday[1], ['placeholder' => '月を入力してください']) }}
                   <label class="form-check-lable col-form-label">月</label>             
                 </div>
-                <div class="form-check form-check-inline @error('birthday') is-invalid @enderror">
+                <div class="form-check form-check-inline">
                   {{ Form::selectRange('birthday[2]', 01, 31, $user->birthday[2], ['placeholder' => '日 を入力してください']) }}
                   <label class="form-check-lable col-form-label">日</label>             
                 </div>
@@ -83,7 +83,7 @@
 
             <div class="form-group">
               <div class="text-right">
-                <input class="btn btn-info " type="submit" value="更新する"> 
+                <input class="btn btn-info " type="submit" value="更新"> 
               </div>
             </div>
 

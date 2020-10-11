@@ -82,7 +82,7 @@ class UsersController extends Controller
 
     //プロフィールの更新
     public function update(UsersProfileEdit $request, $id){
-
+               
         $user = Auth::user();
 
         $user->name = $request->input('name');

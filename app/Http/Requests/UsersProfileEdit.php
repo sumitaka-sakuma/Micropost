@@ -27,10 +27,10 @@ class UsersProfileEdit extends FormRequest
     {
 
         return [
-            'name'              => 'required|string|max:30',
-            'birthday'          => 'date_format:YYYY-MM-DD',
-            'self_introduction' => 'max:300',
-            'profile_image'     => 'mimes:jpeg,jpg,png'
+            // 'name'              => 'required|string|max:30',
+            // 'birthday'          => 'date_format:YYYY-MM-DD',
+            // 'self_introduction' => 'max:300',
+            // 'profile_image'     => 'mimes:jpeg,jpg,png'
         ];
     }
 }
