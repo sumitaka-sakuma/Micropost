@@ -29,7 +29,26 @@
                 <tr>
                   <td><img src="{{ asset('storage/profiles/'.$user->profile_image) }}" style="width:100px; height:100px;"></td>
                   <td><a href="{{ route('users.show', ['id' => $user->id ]) }}">{{ $user->name }}</a></td>
-                  
+                  <td>
+                    <form method="POST" action="">
+                    @csrf
+                      <div class="form-group">
+                        <div class="text-right">
+                          <button type="submit" class="btn btn-danger">フォロー解除</button>
+                        </div>
+                      </div>
+                    </form>
+                  </td>
+                  <td>
+                    <form method="POST" action="">
+                    @csrf
+                      <div class="form-group">
+                        <div class="text-right">
+                          <button type="submit" class="btn btn-primary">フォローする</button>
+                        </div>
+                      </div>
+                    </form>
+                  </td>
                 @endforeach
                 </tr>
               </tbody>
