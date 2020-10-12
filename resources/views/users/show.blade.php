@@ -11,6 +11,28 @@
         
           <img src="{{ asset('storage/profiles/'.$user->profile_image) }}" alt="プロフィール画像" style="width:100px; height:100px;">
 
+          @if(auth()->user()->isFollowing($user->id))
+            <form method="POST" action="{{ route('unfollow', ['id' => $user->id ])}}">
+              @csrf
+              {{ method_field('DELETE') }}
+                        
+              <div class="form-group">
+                <div class="text-right">
+                  <button type="submit" class="btn btn-danger">フォロー解除</button>
+                </div>
+              </div>
+            </form>
+          @else
+            <form method="POST" action="{{ route('follow', ['id' => $user->id ])}}">
+              @csrf
+              <div class="form-group">
+                <div class="text-right">
+                  <button type="submit" class="btn btn-primary">フォローする</button>
+                </div>
+              </div>
+            </form>
+          @endif
+          
           <table class="table">
             <thead>
               <tr>
@@ -66,7 +88,9 @@
             <thead>
               <tr>
                 <th scope="col">投稿一覧</th> 
-                <th scope="col"></th>   
+                <th scope="col"></th> 
+                <th scope="col"></th>
+                <th scope="col"></th>  
               </tr>
             </thead>
             <tbody>
