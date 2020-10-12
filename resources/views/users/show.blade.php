@@ -11,6 +11,11 @@
         
           <img src="{{ asset('storage/profiles/'.$user->profile_image) }}" alt="プロフィール画像" style="width:100px; height:100px;">
 
+          <div>
+            フォロー数{{ $user->follows()->count()}}人
+            フォロワー数{{ $user->followers()->count()}}人
+          </div>  
+        
           @if(auth()->user()->isFollowed($user->id))
             <div>
               <span class="px-1 bg-secondary text-light">フォローされています</span>
