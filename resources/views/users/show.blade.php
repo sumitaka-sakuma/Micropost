@@ -106,8 +106,20 @@
             <tbody>
               @foreach($microposts as $micropost)
                 <tr>
-                  <td>{{ $micropost->content}}</td>
-                  <td>{{ $micropost->created_at}}</td>
+                  <td>
+                    <div>
+                      {{ $micropost->content}}
+                    </div>
+                  </td>
+                  @if(empty($micropost->updated_at))
+                    <td>
+                      {{ $micropost->created_at}}
+                    </td>
+                  @else  
+                    <td>
+                     <label>{{ $micropost->updated_at}}</label>
+                    </td>
+                  @endif
                   @if(Auth::id() === $user->id)
                     <td>
                       <form method="GET" action="{{ route('microposts.edit', ['id' => $micropost->id ])}}">
