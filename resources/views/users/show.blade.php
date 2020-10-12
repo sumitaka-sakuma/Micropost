@@ -11,6 +11,11 @@
         
           <img src="{{ asset('storage/profiles/'.$user->profile_image) }}" alt="プロフィール画像" style="width:100px; height:100px;">
 
+          @if(auth()->user()->isFollowed($user->id))
+            <div>
+              <span class="px-1 bg-secondary text-light">フォローされています</span>
+            </div>
+          @endif
           @if(auth()->user()->isFollowing($user->id))
             <form method="POST" action="{{ route('unfollow', ['id' => $user->id ])}}">
               @csrf
@@ -32,7 +37,7 @@
               </div>
             </form>
           @endif
-          
+
           <table class="table">
             <thead>
               <tr>
