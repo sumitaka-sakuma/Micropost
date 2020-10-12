@@ -44,7 +44,7 @@ class UsersController extends Controller
         $query->select('id', 'name', 'created_at', 'profile_image');
         $query->orderBy('created_at', 'desc');
         $users = $query->paginate(10);
-
+        
         return view('users.index', compact('users', 'search'));
     }
 

@@ -23,7 +23,7 @@
             @if(!empty($search))
               <label for="search">{{ $users->count() }}件ヒットしました</label>
             @endif
-            <table class="talbe">
+            <table class="talbe" style="table-layout:fixed;">
               <tbody>
                 @foreach($users as $user)
                 <tr>
