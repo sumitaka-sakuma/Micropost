@@ -94,7 +94,7 @@
 
           <label>これまで{{ $microposts->count() }}件投稿しています。</label>
 
-          <table class="table">
+          <table class="table table-striped" style="table-layout:fixed;">
             <thead>
               <tr>
                 <th scope="col">投稿一覧</th> 
@@ -106,22 +106,22 @@
             <tbody>
               @foreach($microposts as $micropost)
                 <tr>
-                  <td>
+                  <td style="width:50%;">
                     <div>
-                      {{ $micropost->content}}
+                      <p>{{ $micropost->content}}</p>
                     </div>
                   </td>
                   @if(empty($micropost->updated_at))
-                    <td>
+                    <td style="width:20%;">
                       {{ $micropost->created_at}}
                     </td>
                   @else  
-                    <td>
+                    <td style="width:20%;">
                      <label>{{ $micropost->updated_at}}</label>
                     </td>
                   @endif
                   @if(Auth::id() === $user->id)
-                    <td>
+                    <td style="width:10%;">
                       <form method="GET" action="{{ route('microposts.edit', ['id' => $micropost->id ])}}">
                         @csrf
                         <div class="form-group">
@@ -131,7 +131,7 @@
                         </div>
                       </form>
                     </td>
-                    <td>
+                    <td style="width:10%">
                       <form method="POST" action="{{ route('microposts.destroy', ['id' => $micropost->id ])}}" id="delete_{{ $micropost->id }}">
                       @csrf
                         <div class="form-group">
@@ -147,6 +147,7 @@
             </tdoby>
           </table>
 
+          {{ $microposts->links() }}
           </div>
         </div>
       </div>

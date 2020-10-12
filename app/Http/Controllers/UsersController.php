@@ -59,7 +59,7 @@ class UsersController extends Controller
                        ->select('id', 'user_id', 'content', 'created_at', 'updated_at')
                        ->where('user_id', '=', $user_id)
                        ->orderBy('created_at', 'desc')
-                       ->get();
+                       ->paginate(10);
 
         //ユーザーの誕生日から年齢を求める
         $age = UserAge::userAge($user->birthday);
