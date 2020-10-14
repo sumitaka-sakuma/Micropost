@@ -151,6 +151,15 @@ class UsersController extends Controller
         }
     }
 
+    //フォロー一覧
+    public function followings($id){
+
+        $users = User::find($id);
+        
+        //dd($users->follows[2]->name);
+        return view('users.follow', compact('users'));
+    }
+
     //画像のリサイズ、保存の処理
     private function saveProfileImage($profileImage, $id){
 
