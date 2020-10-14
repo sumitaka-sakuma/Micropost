@@ -157,7 +157,16 @@ class UsersController extends Controller
         $users = User::find($id);
         
         //dd($users->follows[2]->name);
-        return view('users.follow', compact('users'));
+        return view('users.following', compact('users'));
+    }
+
+    //フォロワー一覧
+    public function followers($id){
+
+        $users = User::find($id);
+
+        //dd($users->followers[1]->name);
+        return view('users.followers', compact('users'));
     }
 
     //画像のリサイズ、保存の処理

@@ -18,7 +18,8 @@ Route::group(['prefix' =>'users', 'middleware' => 'auth'], function(){
     Route::post('{id}/follow', 'UsersController@follow')->name('follow');
     Route::delete('{id}/unfollow', 'UsersController@unfollow')->name('unfollow');
 
-    Route::get('follow/{id}', 'UsersController@followings')->name('users.follow');
+    Route::get('following/{id}', 'UsersController@followings')->name('users.following');
+    Route::get('followers/{id}', 'UsersController@followers')->name('users.followers');
 });
 
 Route::group(['prefix' =>'microposts', 'middleware' => 'auth'], function(){
