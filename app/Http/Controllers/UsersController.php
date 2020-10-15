@@ -25,8 +25,10 @@ class UsersController extends Controller
 
         //検索フォーム
         $query = DB::table('users')
-                   ->select('id', 'name', 'created_at', 'profile_image')
-                   ->orderBy('created_at', 'desc');
+                   ->join('microposts', 'microposts.user_id', '=', 'users.id')
+                   ->select('users.id', 'users.name', 'users.created_at', 'users.profile_image', 'microposts.id', 'microposts.user_id', 'microposts.content')
+                   ->orderBy('users.created_at', 'desc')
+                   ->paginate(10);
         
         //キーワードが空白出ない場合
         if(!$search == null){
@@ -43,8 +45,16 @@ class UsersController extends Controller
             }
         }
 
-        $users = $query->paginate(10);
-       
+        $users = $query;
+        //dd($users[1]->content);
+        // $content = [];
+        // $i = 5;
+        // foreach($users as $user){
+        //     $content[] = $user->content;
+        // }
+        //dd($content);
+        //$contents = $users->pluck('content');
+        //dd($content[2]);
         return view('users.index', compact('users', 'search'));
     }
 

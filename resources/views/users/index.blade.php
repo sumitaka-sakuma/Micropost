@@ -4,7 +4,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="column col-md-4">
+    <div class="column col-md-3">
       <div class="card">
         <div class="card-header">検索</div>
         <div class="card-body">
@@ -16,27 +16,30 @@
         </div>
       </div>
     </div>
-    <div class="column col-md-8">
+    <div class="column col-md-9">
       <div class="card">
         <div class="card-header">ユーザー一覧</div>
           <div class="card-body">
             @if(!empty($search))
               <label for="search">{{ $users->count() }}件ヒットしました</label>
             @endif
-            <table class="talbe" style="table-layout:fixed;">
+            <table class="talbe" width="100%" style="table-layout:fixed;">
               <tbody>
                 @foreach($users as $user)
                 <tr>
-                  <td><img src="{{ asset('storage/profiles/'.$user->profile_image) }}" style="width:100px; height:100px;"></td>
-                  <td><a href="{{ route('users.show', ['id' => $user->id ]) }}">{{ $user->name }}</a></td>
-                  <td>
+                  <td style="width:15%;"><img src="{{ asset('storage/profiles/'.$user->profile_image) }}" style="width:100px; height:100px;"></td>
+                  <td style="width:10%;"><a href="{{ route('users.show', ['id' => $user->id ]) }}">{{ $user->name }}</a></td>
+                  <td style="width:25%;">
                     @if (auth()->user()->isFollowed($user->id))
-                      <div class="px-2">
-                        <span class="px-1 bg-secondary text-light">フォローされています</span>
+                      <div class="px-2 text-left">
+                        <span class="bg-secondary text-light">フォローされています</span>
                       </div>
                     @endif
                   </td>
-                  <td>
+                  <td style="width:35%;">
+                    {{ $user->content }}
+                  </td>
+                  <td style="width:15%;">
                     <div class="d-flex justify-content-end flex-grow-1">
                       @if(auth()->user()->isFollowing($user->id))
                         <form method="POST" action="{{ route('unfollow', ['id' => $user->id ])}}">
@@ -63,6 +66,7 @@
                     </div>
                   </td>
                 @endforeach
+                
                 </tr>
               </tbody>
             </table>

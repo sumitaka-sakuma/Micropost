@@ -109,7 +109,7 @@
                 </form>
               </div>
             </div>
-          @endif
+          @endif  
 
           <label>これまで{{ $microposts->count() }}件投稿しています。</label>
 
