@@ -11,10 +11,27 @@
         
           <img src="{{ asset('storage/profiles/'.$user->profile_image) }}" alt="プロフィール画像" style="width:100px; height:100px;">
 
-          <div>
-            フォロー数{{ $user->follows()->count()}}人
-            フォロワー数{{ $user->followers()->count()}}人
-          </div>  
+          <div class="btn-toolbar">
+              <div class="btn-group">
+                <form method="GET" action="{{ route('users.followings', ['id' => $user->id ])}}">
+                  @csrf
+                  <div class="form-group">
+                    <div class="text-right">
+                      <input class="btn btn-outline-info " type="submit" value="フォロー一覧"> 
+                    </div>
+                  </div>
+                </form>
+
+                <form method="GET" action="{{ route('users.followers', ['id' => $user->id ])}}">
+                  @csrf
+                  <div class="form-group">
+                    <div class="text-right">
+                      <input class="btn btn-outline-secondary " type="submit" value="フォロワー一覧"> 
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div> 
         
           @if(auth()->user()->isFollowed($user->id))
             <div>
