@@ -24,7 +24,9 @@ class UsersController extends Controller
         $search = $request->input('search');
 
         //検索フォーム
-        $query = DB::table('users');
+        $query = DB::table('users')
+                   ->select('id', 'name', 'created_at', 'profile_image')
+                   ->orderBy('created_at', 'desc');
         
         //キーワードが空白出ない場合
         if(!$search == null){
@@ -41,10 +43,8 @@ class UsersController extends Controller
             }
         }
 
-        $query->select('id', 'name', 'created_at', 'profile_image');
-        $query->orderBy('created_at', 'desc');
         $users = $query->paginate(10);
-        
+       
         return view('users.index', compact('users', 'search'));
     }
 
