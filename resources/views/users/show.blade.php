@@ -21,26 +21,28 @@
               <span class="px-1 bg-secondary text-light">フォローされています</span>
             </div>
           @endif
-          @if(auth()->user()->isFollowing($user->id))
-            <form method="POST" action="{{ route('unfollow', ['id' => $user->id ])}}">
-              @csrf
-              {{ method_field('DELETE') }}
+          @if(Auth::id() != $user->id )
+            @if(auth()->user()->isFollowing($user->id))
+              <form method="POST" action="{{ route('unfollow', ['id' => $user->id ])}}">
+                @csrf
+                {{ method_field('DELETE') }}
                         
-              <div class="form-group">
-                <div class="text-right">
-                  <button type="submit" class="btn btn-danger">フォロー解除</button>
+                <div class="form-group">
+                  <div class="text-right">
+                    <button type="submit" class="btn btn-danger">フォロー解除</button>
+                  </div>
                 </div>
-              </div>
-            </form>
-          @else
-            <form method="POST" action="{{ route('follow', ['id' => $user->id ])}}">
-              @csrf
-              <div class="form-group">
-                <div class="text-right">
-                  <button type="submit" class="btn btn-primary">フォローする</button>
+              </form>
+            @else
+              <form method="POST" action="{{ route('follow', ['id' => $user->id ])}}">
+                @csrf
+                <div class="form-group">
+                  <div class="text-right">
+                    <button type="submit" class="btn btn-primary">フォローする</button>
+                  </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            @endif
           @endif
 
           <table class="table">

@@ -154,9 +154,8 @@ class UsersController extends Controller
     //フォロー一覧
     public function followings($id){
 
-        $users = User::find($id);
+        $users =  User::find($id);
         
-        //dd($users->follows[2]->name);
         return view('users.followings', compact('users'));
     }
 
@@ -165,7 +164,6 @@ class UsersController extends Controller
 
         $users = User::find($id);
 
-        //dd($users->followers[1]->name);
         return view('users.followers', compact('users'));
     }
 
