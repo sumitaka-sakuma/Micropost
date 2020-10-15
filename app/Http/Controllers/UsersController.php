@@ -27,7 +27,7 @@ class UsersController extends Controller
         $query = DB::table('users')
                    ->join('microposts', 'microposts.user_id', '=', 'users.id')
                    ->select('users.id', 'users.name', 'users.created_at', 'users.profile_image', 'microposts.id', 'microposts.user_id', 'microposts.content')
-                   ->orderBy('users.created_at', 'desc')
+                   ->orderBy('microposts.created_at', 'desc')
                    ->paginate(10);
         
         //キーワードが空白出ない場合
@@ -46,15 +46,7 @@ class UsersController extends Controller
         }
 
         $users = $query;
-        //dd($users[1]->content);
-        // $content = [];
-        // $i = 5;
-        // foreach($users as $user){
-        //     $content[] = $user->content;
-        // }
-        //dd($content);
-        //$contents = $users->pluck('content');
-        //dd($content[2]);
+        
         return view('users.index', compact('users', 'search'));
     }
 

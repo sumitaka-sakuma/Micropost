@@ -18,7 +18,7 @@
     </div>
     <div class="column col-md-9">
       <div class="card">
-        <div class="card-header">ユーザー一覧</div>
+        <div class="card-header">投稿</div>
           <div class="card-body">
             @if(!empty($search))
               <label for="search">{{ $users->count() }}件ヒットしました</label>
