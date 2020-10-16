@@ -8,9 +8,9 @@
       <div class="card">
         <div class="card-header">検索</div>
         <div class="card-body">
-          <form method="GET" action="{{ route('users.index')}}">
+          <form method="GET" action="{{ route('microposts.index')}}">
           @csrf
-            <input class="form-controll mr-sm-2" name="search" type="search" placeholder="ユーザー名を検索" aria-label="Search">
+            <input class="form-controll mr-sm-2" name="search" type="search" placeholder="投稿を検索" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
           </form>
         </div>
@@ -20,9 +20,7 @@
       <div class="card">
         <div class="card-header">投稿一覧</div>
           <div class="card-body">
-            @if(!empty($search))
-              <label for="search">{{ $microposts->count() }}件ヒットしました</label>
-            @endif
+            
             <table class="talbe" width="100%" style="table-layout:fixed;">
               <tbody>
                 @foreach($microposts as $micropost)

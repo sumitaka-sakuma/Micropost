@@ -10,7 +10,7 @@
         <div class="card-body">
           <form method="GET" action="{{ route('users.index')}}">
           @csrf
-            <input class="form-controll mr-sm-2" name="search" type="search" placeholder="ユーザー名を検索" aria-label="Search">
+            <input class="form-controll mr-sm-2" name="search" type="search" placeholder="ユーザー検索" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
           </form>
         </div>

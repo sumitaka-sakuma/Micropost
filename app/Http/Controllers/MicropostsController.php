@@ -17,13 +17,10 @@ class MicropostsController extends Controller
     public function index(Request $request){
 
         $search = $request->input('search');
-
+        
         //検索フォーム
         $query = DB::table('microposts')
-                   ->join('users', 'users.id', '=', 'microposts.user_id')
-                   ->select('users.id', 'users.name', 'users.created_at', 'users.profile_image', 'microposts.user_id', 'microposts.content')
-                   ->orderBy('microposts.created_at', 'desc')
-                   ->paginate(10);
+                   ->join('users', 'users.id', '=', 'microposts.user_id');   
         
         //キーワードが空白でない場合
         if(!$search == null){
@@ -36,14 +33,15 @@ class MicropostsController extends Controller
 
             foreach($search_split2 as $value){
                 
-                $query->where('microposts.content', 'like', '%'.$value.'%');
+                $query->where('content', 'like', '%'.$value.'%');
             }
         }
 
-        $microposts = $query;
+        $query->select('users.id', 'users.name', 'users.created_at', 'users.profile_image', 'microposts.user_id', 'microposts.content');
+        $query->orderBy('microposts.created_at', 'desc');
 
+        $microposts = $query->paginate(10);
 
-        //dd($microposts[2]);
         return view('microposts.index', compact('microposts'));
     }
 
