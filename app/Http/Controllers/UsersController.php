@@ -43,6 +43,7 @@ class UsersController extends Controller
         }
 
         $query->select('id', 'name', 'created_at', 'updated_at', 'profile_image');
+        $query->where('id', '<>', Auth::id());
         $query->orderBy('created_at', 'desc');
         
         $users = $query->paginate(10);
