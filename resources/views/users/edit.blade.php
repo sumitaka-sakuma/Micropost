@@ -16,8 +16,14 @@
 
             <label for="profile_image" class="btn">
               <img src="{{ asset('storage/profiles/'.$user->profile_image) }}" id="img" style="width:100px; height:100px;">
-              <input id="profile_image" type="file"  name="profile_image" onchange="previewImage(this);">
+              <input id="profile_image" class="profile_image @error('profile_image') is-invalid @enderror" type="file"  name="profile_image" onchange="previewImage(this);">
             </label>
+
+            @error('profile_image')
+              <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+              </span>
+            @enderror
 
             <div class="form-group row">
               <label for="user-name" class="col-form-label col-md-2 text-md-center">ユーザー名</label>
@@ -33,7 +39,7 @@
               </div>
             </div>
             <br>
-
+            
             <div class="form-group row">
               <label for="user-birthday" class="col-form-label col-md-2 text-md-center">生年月日</label>
               <div class="col-md-10">

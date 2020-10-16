@@ -78,7 +78,7 @@ class UsersController extends Controller
 
         //誕生日を年、月、日に分割する。
         $user_birthday= explode('-', $user->birthday);
-
+        
         return view('users.edit', compact('user','user_birthday'));
     }
 
@@ -87,13 +87,20 @@ class UsersController extends Controller
                
         $user = Auth::user();
 
+        $birthday = $request->input('birthday');
+
         $user->name = $request->input('name');
-        $user->birthday = $request->input('birthday');
+
+        if(!empty($birthday[0]) && !empty($birthday[1]) && !empty($birthday[2])){
+            $user->birthday = $birthday;
+            //年、月、日に分割された誕生日を連結する。
+            $user->birthday = $user->birthday[0].'-'.$user->birthday[1].'-'.$user->birthday[2];
+        }else{
+            $user->birthday = null;
+        }
+        
         $user->gender = $request->input('gender');
         $user->self_introduction = $request->input('self_introduction');
-
-        //年、月、日に分割された誕生日を連結する。
-        $user->birthday = $user->birthday[0].'-'.$user->birthday[1].'-'.$user->birthday[2];
 
         $profileImage = $request->file('profile_image');
         
