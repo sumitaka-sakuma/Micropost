@@ -43,7 +43,7 @@ class RegisterController extends Controller
 
     public function redirectPath(){
 
-        return 'users/index';
+        return 'microposts/index';
     }
 
     /**
