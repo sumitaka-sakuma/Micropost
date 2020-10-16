@@ -36,7 +36,7 @@ class MicropostsController extends Controller
 
             foreach($search_split2 as $value){
                 
-                $query->where('name', 'like', '%'.$value.'%');
+                $query->where('microposts.content', 'like', '%'.$value.'%');
             }
         }
 

@@ -29,9 +29,6 @@
                 <tr>
                   <td style="width:15%;"><img src="{{ asset('storage/profiles/'.$user->profile_image) }}" style="width:100px; height:100px;"></td>
                   <td style="width:20%;"><a href="{{ route('users.show', ['id' => $user->id ]) }}">{{ $user->name }}</a></td>
-                  <td style="width:50%;">
-                    {{ $user->content }}
-                  </td>
                   <td style="width:15%;">
                     <div class="d-flex justify-content-end flex-grow-1">
                       @if(auth()->user()->isFollowing($user->id))

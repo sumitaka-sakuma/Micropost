@@ -22,13 +22,9 @@ class UsersController extends Controller
     public function index(Request $request){
 
         $search = $request->input('search');
-
+        
         //検索フォーム
-        $query = DB::table('users')
-                   ->join('microposts', 'microposts.user_id', '=', 'users.id')
-                   ->select('users.id', 'users.name', 'users.created_at', 'users.profile_image', 'microposts.id', 'microposts.user_id', 'microposts.content')
-                   ->orderBy('microposts.created_at', 'desc')
-                   ->paginate(10);
+        $query = DB::table('users');
         
         //キーワードが空白出ない場合
         if(!$search == null){
@@ -42,10 +38,14 @@ class UsersController extends Controller
             foreach($search_split2 as $value){
                 
                 $query->where('name', 'like', '%'.$value.'%');
+                
             }
         }
 
-        $users = $query;
+        $query->select('id', 'name', 'created_at', 'updated_at', 'profile_image');
+        $query->orderBy('created_at', 'desc');
+        
+        $users = $query->paginate(10);
         
         return view('users.index', compact('users', 'search'));
     }
