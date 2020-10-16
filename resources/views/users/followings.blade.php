@@ -9,12 +9,12 @@
         <div class="card-header">フォロー一覧</div>
           <div class="card-body">
             
-            <table class="talbe" style="table-layout:fixed;">
+            <table class="talbe" width="100%" style="table-layout:fixed;">
               <tbody>
                 @foreach($users->follows as $user)
                 <tr>
                   <td style="width:15%"><img src="{{ asset('storage/profiles/'.$user->profile_image) }}" style="width:100px; height:100px;"></td>
-                  <td style="width:20%"><a href="{{ route('users.show', ['id' => $user->id ]) }}">{{ $user->name }}</a></td>
+                  <td style="width:15%"><a href="{{ route('users.show', ['id' => $user->id ]) }}">{{ $user->name }}</a></td>
                   <td style="width:30%">
                     @if (auth()->user()->isFollowed($user->id))
                       <div class="px-2">

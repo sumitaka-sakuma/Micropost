@@ -62,27 +62,27 @@
             @endif
           @endif
 
-          <table class="table">
+          <table class="table" width="100%" style="table-layout:fixed;">
             <thead>
               <tr>
-                <th scope="col">ユーザー名</th>   
-                <th scope="col">生年月日</th>
-                <th scope="col">年齢</th>
-                <th scope="col">性別</th>
-                <th scope="col">自己紹介</th>   
+                <th scope="col" style="width:20%;">ユーザー名</th>   
+                <th scope="col" style="width:15%;">生年月日</th>
+                <th scope="col" style="width:10%;">年齢</th>
+                <th scope="col" style="width:10%;">性別</th>
+                <th scope="col" style="width:45%;">自己紹介</th>   
              </tr>
             </thead>
             <tbody>
               <tr>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->birthday }}</td>
+                <td style="width:20%;">{{ $user->name }}</td>
+                <td style="width:15%;">{{ $user->birthday }}</td>
                 @if(empty($user->birthday))
-                  <td></td>
+                  <td style="width:10%;"></td>
                 @else
-                  <td>{{ $age->y }}歳</td>
+                  <td style="width:10%;">{{ $age->y }}歳</td>
                 @endif
-                <td>{{ $gender}}</td>
-                <td>{{ $user->self_introduction }}</td>
+                <td style="width:10%;">{{ $gender}}</td>
+                <td style="width:45%;">{{ $user->self_introduction }}</td>
               </tr>
             </tdoby>
           </table>  
@@ -113,30 +113,32 @@
 
           <label>これまで{{ $microposts->count() }}件投稿しています。</label>
 
-          <table class="table table-striped" style="table-layout:fixed;">
+          <table class="table table-striped" width="100%" style="table-layout:fixed;">
             <thead>
               <tr>
-                <th scope="col">投稿一覧</th> 
-                <th scope="col"></th> 
-                <th scope="col"></th>
-                <th scope="col"></th>  
+                <th scope="col" @if(Auth::id() === $user->id) style="width:60%;" @else style="width:70%;" @endif>投稿一覧</th> 
+                <th scope="col" @if(Auth::id() === $user->id) style="width:15%;" @else style="width:25%;" @endif></th> 
+                @if(Auth::id() === $user->id)
+                  <th scope="col" style="width:15%;"></th>
+                  <th scope="col" style="width:10%;"></th>
+                @endif  
               </tr>
             </thead>
             <tbody>
               @foreach($microposts as $micropost)
                 <tr>
-                  <td style="width:50%;">
+                  <td @if(Auth::id() === $user->id) style="width:60%;" @else style="width:70%;" @endif>
                     <div>
                       <p>{{ $micropost->content}}</p>
                     </div>
                   </td>
                   @if(empty($micropost->updated_at))
-                    <td style="width:20%;">
+                    <td @if(Auth::id() === $user->id) style="width:15%;" @else style="width:25%;" @endif>
                       {{ $micropost->created_at}}
                     </td>
                   @else  
-                    <td style="width:20%;">
-                     <label>{{ $micropost->updated_at}}</label>
+                    <td @if(Auth::id() === $user->id) style="width:15%;" @else style="width:25%;" @endif>
+                      <label>{{ $micropost->updated_at}}</label>
                     </td>
                   @endif
                   @if(Auth::id() === $user->id)
