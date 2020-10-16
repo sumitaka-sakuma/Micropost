@@ -50,6 +50,9 @@
                             @endif
                         @else
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('microposts.index') }}">{{ __('投稿一覧') }}</a>
+                            <li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('users.index') }}">{{ __('ユーザー一覧') }}</a>
                             <li>
                             <li class="nav-item dropdown">
@@ -62,6 +65,20 @@
                                         {{ __('マイプロフィール') }}
                                     </a>
                                     <form action="{{ route('users.show', ['id' => Auth::id() ]) }}" method="GET" class="d-none">
+                                        @csrf
+                                    </form>
+
+                                    <a class="dropdown-item" href="{{ route('users.followings', ['id' => Auth::id() ]) }}">
+                                        {{ __('フォロー一覧') }}
+                                    </a>
+                                    <form action="{{ route('users.followings', ['id' => Auth::id() ]) }}" method="GET" class="d-none">
+                                        @csrf
+                                    </form>
+
+                                    <a class="dropdown-item" href="{{ route('users.followers', ['id' => Auth::id() ]) }}">
+                                        {{ __('フォロワー一覧') }}
+                                    </a>
+                                    <form action="{{ route('users.followers', ['id' => Auth::id() ]) }}" method="GET" class="d-none">
                                         @csrf
                                     </form>
 

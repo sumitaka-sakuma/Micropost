@@ -13,9 +13,9 @@
               <tbody>
                 @foreach($users->follows as $user)
                 <tr>
-                  <td><img src="{{ asset('storage/profiles/'.$user->profile_image) }}" style="width:100px; height:100px;"></td>
-                  <td><a href="{{ route('users.show', ['id' => $user->id ]) }}">{{ $user->name }}</a></td>
-                  <td>
+                  <td style="width:15%"><img src="{{ asset('storage/profiles/'.$user->profile_image) }}" style="width:100px; height:100px;"></td>
+                  <td style="width:20%"><a href="{{ route('users.show', ['id' => $user->id ]) }}">{{ $user->name }}</a></td>
+                  <td style="width:30%">
                     @if (auth()->user()->isFollowed($user->id))
                       <div class="px-2">
                         <span class="px-1 bg-secondary text-light">フォローされています</span>
@@ -26,7 +26,6 @@
                 </tr>
               </tbody>
             </table>
-
          
           </div>
         </div>
