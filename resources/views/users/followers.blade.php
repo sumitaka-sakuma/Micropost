@@ -9,6 +9,10 @@
         <div class="card-header">フォロー一覧</div>
           <div class="card-body">
             
+            @if($users->followers->count() == 0)
+              <p class="text-center">フォロワーがいません。</p>
+            @endif
+
             <table class="talbe" width="100%" style="table-layout:fixed;">
               <tbody>
                 @foreach($users->followers as $user)

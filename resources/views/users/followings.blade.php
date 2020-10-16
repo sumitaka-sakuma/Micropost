@@ -8,7 +8,20 @@
       <div class="card">
         <div class="card-header">フォロー一覧</div>
           <div class="card-body">
-            
+
+            @if($users->follows->count() == 0)
+              <p class="text-center">フォローしている人がいません。</p>
+              <p class="text-center">ユーザーの一覧を見て誰かをフォローしてみましょう！</p>
+              <form method="GET" action="{{ route('users.index')}}">
+              @csrf
+                <div class="form-group">
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary">ユーザー一覧を見る</button>
+                  </div>
+                </div>
+              </form>
+            @endif
+
             <table class="talbe" width="100%" style="table-layout:fixed;">
               <tbody>
                 @foreach($users->follows as $user)
