@@ -54,12 +54,10 @@ class UsersController extends Controller
     public function show($id){
 
         $user = User::find($id);
-
-        $user_id = $user->id;
         
         $microposts = DB::table('microposts')
                        ->select('id', 'user_id', 'content', 'created_at', 'updated_at')
-                       ->where('user_id', '=', $user_id)
+                       ->where('user_id', '=', $user->id)
                        ->orderBy('created_at', 'desc')
                        ->paginate(10);
 

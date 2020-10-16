@@ -6,11 +6,46 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Micropost;
+use App\Models\Follower;
 use App\Http\Requests\ContentValidation;
 use Illuminate\Support\Facades\Auth;
 
 class MicropostsController extends Controller
 {
+
+    //投稿一覧
+    public function index(Request $request){
+
+        $search = $request->input('search');
+
+        //検索フォーム
+        $query = DB::table('microposts')
+                   ->join('users', 'users.id', '=', 'microposts.user_id')
+                   ->select('users.id', 'users.name', 'users.created_at', 'users.profile_image', 'microposts.user_id', 'microposts.content')
+                   ->orderBy('microposts.created_at', 'desc')
+                   ->paginate(10);
+        
+        //キーワードが空白でない場合
+        if(!$search == null){
+
+            //全角スペースを半角に変換
+            $search_split1 = mb_convert_kana($search, 's');
+
+            //空白で区切る
+            $search_split2 = preg_split('/[\s]+/', $search_split1, -1, PREG_SPLIT_NO_EMPTY);
+
+            foreach($search_split2 as $value){
+                
+                $query->where('name', 'like', '%'.$value.'%');
+            }
+        }
+
+        $microposts = $query;
+
+
+        //dd($microposts[2]);
+        return view('microposts.index', compact('microposts'));
+    }
 
     //新規投稿
     public function create(){
