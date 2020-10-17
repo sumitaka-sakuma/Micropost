@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Micropost;
 use App\Models\Follower;
 use App\Services\UserAge;
+use App\Services\FormSearch;
 use App\Services\FormCheck;
 use App\Http\Requests\UsersProfileEdit;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,7 @@ class UsersController extends Controller
     //ユーザー一覧
     public function index(Request $request){
 
+        //検索フォームに入力した値を格納
         $search = $request->input('search');
         
         //検索フォーム
@@ -29,17 +31,8 @@ class UsersController extends Controller
         //キーワードが空白出ない場合
         if(!$search == null){
 
-            //全角スペースを半角に変換
-            $search_split1 = mb_convert_kana($search, 's');
-
-            //空白で区切る
-            $search_split2 = preg_split('/[\s]+/', $search_split1, -1, PREG_SPLIT_NO_EMPTY);
-
-            foreach($search_split2 as $value){
-                
-                $query->where('name', 'like', '%'.$value.'%');
-                
-            }
+            //ユーザーの検索
+            $query = FormSearch::searchForUsers($search, $query);
         }
 
         $query->select('id', 'name', 'created_at', 'updated_at', 'profile_image');

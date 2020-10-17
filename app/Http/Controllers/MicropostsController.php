@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Micropost;
 use App\Models\Follower;
+use App\Services\FormSearch;
 use App\Http\Requests\ContentValidation;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,6 +17,7 @@ class MicropostsController extends Controller
     //投稿一覧
     public function index(Request $request){
 
+        //検索フォームに入力した値を格納
         $search = $request->input('search');
         
         //検索フォーム
@@ -25,16 +27,8 @@ class MicropostsController extends Controller
         //キーワードが空白でない場合
         if(!$search == null){
 
-            //全角スペースを半角に変換
-            $search_split1 = mb_convert_kana($search, 's');
-
-            //空白で区切る
-            $search_split2 = preg_split('/[\s]+/', $search_split1, -1, PREG_SPLIT_NO_EMPTY);
-
-            foreach($search_split2 as $value){
-                
-                $query->where('content', 'like', '%'.$value.'%');
-            }
+            //投稿内容の検索
+            $query = FormSearch::searchForMicroposts($search, $query);
         }
 
         $query->select('users.id', 'users.name', 'users.created_at', 'users.profile_image', 'microposts.user_id', 'microposts.content');
