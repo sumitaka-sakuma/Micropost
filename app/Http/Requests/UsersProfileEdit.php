@@ -28,7 +28,9 @@ class UsersProfileEdit extends FormRequest
 
         return [
             'name'              => 'required|string|max:30',
-            'birthday'          => 'required',
+            'birthday[0]'       => 'date_format:YYYY',
+            'birthday[1]'       => 'date_format:mm',
+            'birthday[2]'       => 'date_format:dd',
             'self_introduction' => 'max:300',
             'profile_image'     => 'image|mimes:jpeg,jpg,png'
         ];

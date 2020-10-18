@@ -77,7 +77,7 @@ class UsersController extends Controller
 
     //プロフィールの更新
     public function update(UsersProfileEdit $request, $id){
-               
+        
         $user = Auth::user();
 
         $birthday = $request->input('birthday');
