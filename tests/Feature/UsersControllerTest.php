@@ -12,16 +12,17 @@ use Tests\TestCase;
 
 class UsersControllerTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function testExample(){
+    
+    use DatabaseTransactions;
 
-        $user = factory(User::class)->create();
+    // public function testExample(){
+
+    //     $user = factory(User::class)->create();
 
         
-        
-    }
+    //     $response = $this->actingAs($user)
+    //                      ->get(route('users.show', ['id', $user->id]))
+    //                      ->assertStatus(200);
+
+    // }
 }
