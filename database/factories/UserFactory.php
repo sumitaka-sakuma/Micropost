@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 

@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Support\Facades\Storage;
 use DatabaseMigrations;
 use App\Models\User;
 use Tests\TestCase;
@@ -33,10 +34,22 @@ class UserPathTest extends TestCase
 
         $user = factory(User::class)->create();
         
-        $response = $this->withoutMiddleware()
+        $response = $this->withoutExceptionHandling()
                          ->actingAs($user)
                          ->get('users/show/'.$user->id);
 
         $response->assertStatus(200);
     }
+
+    //users/edit/{$id}のテスト
+    // public function testGetUserEditPath(){
+
+    //     $user = factory(User::class)->create();        
+
+    //     $response = $this->withoutExceptionHandling()
+    //                      ->actingAs($user)
+    //                      ->get(route('users.edit', ['id' => $user->id]));
+
+    //     $response->assertStatus(200);
+    // }
 }
