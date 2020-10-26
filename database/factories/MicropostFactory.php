@@ -6,9 +6,12 @@ use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
 
-$factory->define(Micropost::class, function (Faker $faker) {
+$factory->define(Micropost::class, function ($faker) {
     return [
-        'content' => $faker->content,
-        
+        'content' => 'test',
+        'user_id' => function () {
+            return factory(User::class)->create()->id;
+        }
     ];
 });
+
