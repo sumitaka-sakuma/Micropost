@@ -27,12 +27,14 @@ class UpdateMyprofileTest extends TestCase
             'birthday' => ['1990', '11', '22'],
             'gender' => 1,
             'self_introduction' => 'Hello',
+            //'profile_image' => 'default.png',
         ]);
         
         $this->assertEquals('testuser', $user->name);
         $this->assertEquals('1990-11-22', $user->birthday);
         $this->assertEquals(1, $user->gender);
         $this->assertEquals('Hello', $user->self_introduction);
+       //$this->assertEquals('default.png', $user->profile_image);
         
 
         $user1 = User::find($user->id);
@@ -40,6 +42,7 @@ class UpdateMyprofileTest extends TestCase
         $this->assertEquals('1990-11-22', $user1->birthday);
         $this->assertEquals(1, $user1->gender);
         $this->assertEquals('Hello', $user1->self_introduction);
+        //$this->assertEquals('default.png', $user1->profile_image);
         
     }
 }

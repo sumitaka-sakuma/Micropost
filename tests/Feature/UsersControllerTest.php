@@ -13,16 +13,7 @@ use Tests\TestCase;
 class UsersControllerTest extends TestCase
 {
     
-    use DatabaseTransactions;
+    use RefreshDatabase;
 
-    // public function testExample(){
-
-    //     $user = factory(User::class)->create();
-
-        
-    //     $response = $this->actingAs($user)
-    //                      ->get(route('users.show', ['id', $user->id]))
-    //                      ->assertStatus(200);
-
-    // }
+    
 }

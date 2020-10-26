@@ -30,6 +30,7 @@ class MicropostTest extends TestCase
 
         $micropost1 = Micropost::find($micropost->id);
         $this->assertEquals('test', $micropost1->content);
+        $this->assertEquals($micropost->user->id, $micropost->user_id);
 
     }
 }
