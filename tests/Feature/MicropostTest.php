@@ -24,13 +24,13 @@ class MicropostTest extends TestCase
                          ->actingAs($micropost->user)
                          ->get('microposts/create');
         
-        $this->assertEquals('test', $micropost->content);
+        $this->assertSame('test', $micropost->content);
 
         $micropost->save();
 
         $micropost1 = Micropost::find($micropost->id);
-        $this->assertEquals('test', $micropost1->content);
-        $this->assertEquals($micropost->user->id, $micropost->user_id);
+        $this->assertSame('test', $micropost1->content);
+        $this->assertSame($micropost->user->id, $micropost->user_id);
 
     }
 }

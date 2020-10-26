@@ -25,24 +25,22 @@ class UpdateMyprofileTest extends TestCase
         $this->post('/users/update/'.$user->id, [
             'name'    => 'testuser',
             'birthday' => ['1990', '11', '22'],
-            'gender' => 1,
+            'gender' => '女性',
             'self_introduction' => 'Hello',
-            //'profile_image' => 'default.png',
+            
         ]);
         
-        $this->assertEquals('testuser', $user->name);
-        $this->assertEquals('1990-11-22', $user->birthday);
-        $this->assertEquals(1, $user->gender);
-        $this->assertEquals('Hello', $user->self_introduction);
-       //$this->assertEquals('default.png', $user->profile_image);
+        $this->assertSame('testuser', $user->name);
+        $this->assertSame('1990-11-22', $user->birthday);
+        $this->assertSame('女性', $user->gender);
+        $this->assertSame('Hello', $user->self_introduction);
         
 
         $user1 = User::find($user->id);
-        $this->assertEquals('testuser', $user1->name);
-        $this->assertEquals('1990-11-22', $user1->birthday);
-        $this->assertEquals(1, $user1->gender);
-        $this->assertEquals('Hello', $user1->self_introduction);
-        //$this->assertEquals('default.png', $user1->profile_image);
+        $this->assertSame('testuser', $user1->name);
+        $this->assertSame('1990-11-22', $user1->birthday);
+        $this->assertSame('女性', $user1->gender);
+        $this->assertSame('Hello', $user1->self_introduction);
         
     }
 }
