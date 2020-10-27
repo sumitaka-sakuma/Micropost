@@ -24,6 +24,7 @@ class UsersControllerTest extends TestCase
         $user1->follow($user2->id);
         
         $this->assertTrue($user1->isFollowing($user2->id));
+        $this->assertTrue($user2->isFollowed($user1->id));
         $this->assertSame($user2->id, $user1->follows[0]->id);
     }
 
@@ -37,6 +38,7 @@ class UsersControllerTest extends TestCase
         $user1->unfollow($user2->id);
         
         $this->assertFalse($user1->isFollowing($user2->id));
+        $this->assertFalse($user2->isFollowed($user1->id));
         $this->assertNotSame($user2->id, $user1->follows);
     }
 
