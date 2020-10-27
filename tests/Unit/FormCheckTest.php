@@ -25,9 +25,10 @@ class FormCheckTest extends TestCase
     //0,1以外の値が入力された時のテスト
     public function testNotCheckGender(){
 
-        // $notCheck1 = FormCheck::checkGender(2);
-        // $notCheck2 = FormCheck::checkGender('test');
+        $notCheck1 = FormCheck::checkGender(2);
+        $notCheck2 = FormCheck::checkGender('test');
 
-        
+        $this->assertNull($notCheck1);
+        $this->assertNull($notCheck2);
     }
 }
