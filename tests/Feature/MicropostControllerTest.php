@@ -13,6 +13,23 @@ class MicropostControllerTest extends TestCase
     
     use RefreshDatabase;
 
+    //投稿の更新機能のテスト
+    public function testMicropostUpdate(){
+
+        $micropost = factory(Micropost::class)->create();
+
+        $micropost->content = "changed test";
+        
+        $response = $this->withoutExceptionHandling()
+                         ->actingAs($micropost->user);
+                         
+        $micropost->save();
+        
+        $this->assertDatabaseHas('microposts', [
+            'content' => 'changed test',
+        ]);
+    }    
+
     //投稿の削除機能のテスト
     public function testMicropostDestroy(){
     
