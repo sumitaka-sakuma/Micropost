@@ -28,7 +28,7 @@ class UsersController extends Controller
         //検索フォーム
         $query = DB::table('users');
         
-        //キーワードが空白出ない場合
+        //キーワードが空白でない場合
         if(!$search == null){
 
             //ユーザーの検索
@@ -71,7 +71,7 @@ class UsersController extends Controller
     //プロフィールの編集
     public function edit($id){
 
-        if($id <= 0){
+        if(($id <= 0) || ($id == null)){
             return back();
         }
 
@@ -86,7 +86,7 @@ class UsersController extends Controller
     //プロフィールの更新
     public function update(UsersProfileEdit $request, $id){
         
-        if($id <= 0){
+        if(($id <= 0) || ($id == null)){
             return back();
         }
 
@@ -125,7 +125,7 @@ class UsersController extends Controller
     //ユーザーの削除
     public function destroy($id){
 
-        if($id <= 0){
+        if(($id <= 0) || ($id == null)){
             return back();
         }
 
@@ -142,7 +142,7 @@ class UsersController extends Controller
     //フォロー
     public function follow($id){
 
-        if($id <= 0){
+        if(($id <= 0) || ($id == null)){
             return back();
         }
 
@@ -162,7 +162,7 @@ class UsersController extends Controller
     //フォロー解除
     public function unfollow($id){
 
-        if($id <= 0){
+        if(($id <= 0) || ($id == null)){
             return back();
         }
 
@@ -181,7 +181,7 @@ class UsersController extends Controller
     //フォロー一覧
     public function followings($id){
 
-        if($id <= 0){
+        if(($id <= 0) || ($id == null)){
             return back();
         }
 
@@ -193,7 +193,7 @@ class UsersController extends Controller
     //フォロワー一覧
     public function followers($id){
 
-        if($id <= 0){
+        if(($id <= 0) || ($id == null)){
             return back();
         }
 
@@ -205,10 +205,10 @@ class UsersController extends Controller
     //画像のリサイズ、保存の処理
     private function saveProfileImage($profileImage, $id){
 
-        if($id <= 0){
+        if(($id <= 0) || ($id == null)){
             return back();
         }
-        
+
         $img = \Image::make($profileImage);
         //リサイズ
         $img->fit(100, 100, function($constraint){
