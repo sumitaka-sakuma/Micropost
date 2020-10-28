@@ -8,6 +8,22 @@
       <div class="card">
         <div class="card-header">プロフィール編集</div>
           <div class="card-body">
+
+            @if (session('status'))
+              <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+              </div>
+            @endif
+
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                <ul>
+                  @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
+              </div>
+            @endif
           
             <form method="POST" action="{{ route('users.update', ['id' => $user->id ])}}" enctype="multipart/form-data">
             @csrf
@@ -16,26 +32,14 @@
 
             <label for="profile_image" class="btn">
               <img src="{{ asset('storage/profiles/'.$user->profile_image) }}" id="img" style="width:100px; height:100px;">
-              <input id="profile_image" class="profile_image @error('profile_image') is-invalid @enderror" type="file"  name="profile_image" onchange="previewImage(this);">
+              <input id="profile_image" class="profile_image" type="file"  name="profile_image" onchange="previewImage(this);">
             </label>
-
-            @error('profile_image')
-              <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-              </span>
-            @enderror
 
             <div class="form-group row">
               <label for="user-name" class="col-form-label col-md-2 text-md-center">ユーザー名</label>
               <div class="col-md-10">
-                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}">
+                <input type="text" class="form-control" name="name" value="{{ $user->name }}">
                 
-                @error('name')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-
               </div>
             </div>
             <br>
@@ -75,14 +79,7 @@
             <div class="form-group row">
               <label for="user-self_introduction" class="col-form-label col-md-2 text-md-center">自己紹介</label>
               <div class="col-md-10">
-                <textarea class="form-control @error('self_introduction') is-invalid @enderror" name="self_introduction">{{ $user->self_introduction }}</textarea>
-
-                @error('self_introduction')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-
+                <textarea class="form-control" name="self_introduction">{{ $user->self_introduction }}</textarea>
               </div>
             </div>
             <br>
