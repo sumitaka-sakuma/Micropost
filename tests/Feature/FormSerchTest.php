@@ -37,4 +37,26 @@ class FormSerchTest extends TestCase
         $this->assertEquals($users[0], $result[0]);
         $this->assertEquals($users[1], $result[1]);
     }
+
+    /* ユーザーの検索機能
+    *  ユーザー二つを作成し、「あ」で検索。ユーザーがヒットしないことを確認
+    */
+    public function testSearchForUsersNotHits(){
+
+        DB::table('users')->insert([
+            ['name' => 'testuser', 'email' => 'testuser@gmail.com', 'password' => 'password'],
+            ['name' => 'eric', 'email' => 'eric@gmail.com', 'password' => 'password']
+        ]);
+        
+        $users = DB::table('users')->select('*')->where('name', 'testuser')->orWhere('name', 'eric')->get();
+        
+        $search = 'あ';
+        $query = DB::table('users');
+            
+        $query = FormSearch::searchForUsers($search, $query);
+            
+        $result = $query->select('*')->orderBy('created_at', 'desc')->get();
+        
+        $this->assertEmpty($result);
+    }
 }
