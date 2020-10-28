@@ -65,6 +65,10 @@ class MicropostsController extends Controller
     //投稿の編集
     public function edit($id){
 
+        if($id <= 0){
+            return back();
+        }
+
         $micropost = Micropost::find($id);
 
         return view('microposts.edit', compact('micropost'));
@@ -72,6 +76,10 @@ class MicropostsController extends Controller
 
     //投稿の更新
     public function update(ContentValidation $request, $id){
+
+        if($id <= 0){
+            return back();
+        }
 
         $micropost = Micropost::find($id);
 
@@ -86,6 +94,10 @@ class MicropostsController extends Controller
 
     //投稿の削除
     public function destroy($id){
+
+        if($id <= 0){
+            return back();
+        }
 
         $micropost = Micropost::find($id);
 

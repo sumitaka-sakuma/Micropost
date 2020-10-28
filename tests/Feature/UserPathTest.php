@@ -41,20 +41,4 @@ class UserPathTest extends TestCase
         $response->assertStatus(200);
     }
 
-    //users/edit/{$id}のテスト
-    // public function testGetUserEditPath(){
-
-    //     $user = User::create([
-    //         'name' =>   'testuser',
-    //         'email' => 'testuser@gmail.com',
-    //         'password' => 'password',
-    //         'profile_image' => 'default.png',
-    //     ]);       
-        
-    //     $response = $this->withoutExceptionHandling()
-    //                      ->actingAs($user)
-    //                      ->get(route('users.edit', ['id' => $user->id]));
-
-    //     $response->assertStatus(200);
-    // }
 }

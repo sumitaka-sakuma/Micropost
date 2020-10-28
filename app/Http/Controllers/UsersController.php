@@ -47,6 +47,10 @@ class UsersController extends Controller
     //プロフィール
     public function show($id){
 
+        if($id <= 0){
+            return back();
+        }
+
         $user = User::find($id);
         
         $microposts = DB::table('microposts')
@@ -67,6 +71,10 @@ class UsersController extends Controller
     //プロフィールの編集
     public function edit($id){
 
+        if($id <= 0){
+            return back();
+        }
+
         $user = Auth::user();
 
         //誕生日を年、月、日に分割する。
@@ -78,6 +86,10 @@ class UsersController extends Controller
     //プロフィールの更新
     public function update(UsersProfileEdit $request, $id){
         
+        if($id <= 0){
+            return back();
+        }
+
         $user = Auth::user();
 
         $birthday = $request->input('birthday');
@@ -113,6 +125,10 @@ class UsersController extends Controller
     //ユーザーの削除
     public function destroy($id){
 
+        if($id <= 0){
+            return back();
+        }
+
         $user = User::find($id);
 
         if($user->delete()){
@@ -125,6 +141,10 @@ class UsersController extends Controller
 
     //フォロー
     public function follow($id){
+
+        if($id <= 0){
+            return back();
+        }
 
         $user = User::find($id);
         $follower = auth()->user();
@@ -142,6 +162,10 @@ class UsersController extends Controller
     //フォロー解除
     public function unfollow($id){
 
+        if($id <= 0){
+            return back();
+        }
+
         $user = User::find($id);
         $follower = auth()->user();
 
@@ -157,13 +181,21 @@ class UsersController extends Controller
     //フォロー一覧
     public function followings($id){
 
+        if($id <= 0){
+            return back();
+        }
+
         $users =  User::find($id);
-        //dd($users->follows[0]);
+        
         return view('users.followings', compact('users'));
     }
 
     //フォロワー一覧
     public function followers($id){
+
+        if($id <= 0){
+            return back();
+        }
 
         $users = User::find($id);
 
@@ -173,6 +205,10 @@ class UsersController extends Controller
     //画像のリサイズ、保存の処理
     private function saveProfileImage($profileImage, $id){
 
+        if($id <= 0){
+            return back();
+        }
+        
         $img = \Image::make($profileImage);
         //リサイズ
         $img->fit(100, 100, function($constraint){
