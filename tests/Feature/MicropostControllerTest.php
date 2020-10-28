@@ -16,6 +16,7 @@ class MicropostControllerTest extends TestCase
     //投稿機能のテスト
     public function testMicropostCreate(){
 
+        //micropostのcontentとして「test」を作成
         $micropost = factory(Micropost::class)->create();
         
         $response = $this->withoutExceptionHandling()
@@ -32,6 +33,7 @@ class MicropostControllerTest extends TestCase
     //投稿の更新機能のテスト
     public function testMicropostUpdate(){
 
+        //micropostのcontentとして「test」を作成
         $micropost = factory(Micropost::class)->create();
 
         $micropost->content = "changed test";
