@@ -39,6 +39,14 @@ class MicropostsController extends Controller
         return view('microposts.index', compact('microposts'));
     }
 
+    //投稿の詳細
+    public function show($id){
+        
+        $micropost = Micropost::find($id);
+
+        return view('microposts.show', compact('micropost'));
+    }
+
     //新規投稿
     public function create(){
 

@@ -25,6 +25,7 @@ Route::group(['prefix' =>'users', 'middleware' => 'auth'], function(){
 Route::group(['prefix' =>'microposts', 'middleware' => 'auth'], function(){
 
     Route::get('index', 'MicropostsController@index')->name('microposts.index');
+    Route::get('show/{id}', 'MicropostsController@show')->name('microposts.show');
     Route::get('create', 'MicropostsController@create')->name('microposts.create');
     Route::post('store', 'MicropostsController@store')->name('microposts.store');
     Route::get('edit/{id}', 'MicropostsController@edit')->name('microposts.edit');
