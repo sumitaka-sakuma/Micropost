@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Micropost extends Model
+class Like extends Model
 {
     protected $fillable = [
-        'content',
-        'user_id'
+        'user_id',
+        'micropost_id'
     ];
 
     public function user(){
@@ -16,9 +16,8 @@ class Micropost extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function likes(){
+    public function micropost(){
 
-        return $this->hasMany(Like::class);
+        return $this->belongsTo(Micropost::class);
     }
-    
 }
