@@ -31,6 +31,8 @@ Route::group(['prefix' =>'microposts', 'middleware' => 'auth'], function(){
     Route::post('update/{id}', 'MicropostsController@update')->name('microposts.update');
     Route::post('destroy/{id}', 'MicropostsController@destroy')->name('microposts.destroy');
 
+    Route::post('{id}/likes', 'LikesController@store')->name('likes.store');
+    Route::post('{id}/likes/{like}', 'LikesController@destroy')->name('likes.destory');
 });
 
 
