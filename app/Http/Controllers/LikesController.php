@@ -12,6 +12,7 @@ use App\models\Like;
 class LikesController extends Controller
 {
     
+    //投稿にいいねをつける
     public function store(Request $request, $micropostId){
 
         Like::create(
@@ -27,8 +28,15 @@ class LikesController extends Controller
 
     }
 
+    //いいねを解除
     public function destroy($micropostId, $likeId){
 
+        $micropost = Micropost::findOrFail($micropostId);
+
+        //likeテーブルの中から現在ログインしているuser_idを取得する
+        $micropost->like_by()->findOrFail($likeId)->delete();
+
+        return redirect()->action('MicropostController@index', $micropostId);
     }
 
 }

@@ -20,5 +20,11 @@ class Micropost extends Model
 
         return $this->hasMany(Like::class);
     }
+
+    //likeテーブルの中から現在ログインしているuser_idを取得する
+    public function like_by(){
+
+        return Like::where('user_id', Auth::user()->id)->first();
+    }
     
 }
