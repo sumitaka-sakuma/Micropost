@@ -21,14 +21,23 @@
               <tr>
                 <td>{{ $micropost->content }}</td>
                 <td>
-                  <form method="POST" action="{{ route('likes.store', ['id' => $micropost->id ])}}">
-                  @csrf
-                    <div class="form-group">
-                      <div class="text-right">
-                        <input class="btn btn-secondary " type="submit" value="いいね"> 
-                      </div>
-                  </div>
-                  </form>
+                  @if (Auth::check())
+                    @if ($like)
+                      {{ Form::model($micropost, array('action' => array('LikesController@destroy', $micropost->id, $like->id))) }}
+                        <button type="submit">
+                          <img src="/images/icon_heart_red.svg">
+                          Like {{ $micropost->likes_count }}
+                        </button>
+                      {!! Form::close() !!}
+                    @else
+                      {{ Form::model($micropost, array('action' => array('LikesController@store', $micropost->id))) }}
+                        <button type="submit">
+                          <img src="/images/icon_heart.svg">
+                          Like {{ $micropost->likes_count }}
+                       </button>
+                      {!! Form::close() !!}
+                    @endif
+                  @endif
                 </td>
               </tr>
             </tdoby>

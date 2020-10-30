@@ -46,7 +46,8 @@ class MicropostsController extends Controller
 
         $like = $micropost->likes()->where('user_id', Auth::user()->id)->first();
 
-        return view('microposts.show', compact('micropost', 'like'));
+        return view('microposts.show')->with(array('micropost' => $micropost,
+                                                  'like' => $like));
     }
 
     //新規投稿
