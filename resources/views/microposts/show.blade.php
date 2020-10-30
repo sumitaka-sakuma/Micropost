@@ -20,6 +20,16 @@
             <tbody>
               <tr>
                 <td>{{ $micropost->content }}</td>
+                <td>
+                  <form method="POST" action="{{ route('likes.store', ['id' => $micropost->id ])}}">
+                  @csrf
+                    <div class="form-group">
+                      <div class="text-right">
+                        <input class="btn btn-secondary " type="submit" value="いいね"> 
+                      </div>
+                  </div>
+                  </form>
+                </td>
               </tr>
             </tdoby>
           </table>    

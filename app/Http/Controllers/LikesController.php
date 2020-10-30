@@ -17,7 +17,7 @@ class LikesController extends Controller
         Like::create(
             array(
               'user_id' => Auth::user()->id,
-              'post_id' => $postId
+              'micropost_id' => $micropostId
             )
         );
         
