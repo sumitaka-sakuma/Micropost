@@ -42,9 +42,11 @@ class MicropostsController extends Controller
     //投稿の詳細
     public function show($id){
         
-        $micropost = Micropost::find($id);
+        $micropost = Micropost::findOrFail($id);
 
-        return view('microposts.show', compact('micropost'));
+        $like = $micropost->likes()->where('user_id', Auth::user()->id)->first();
+
+        return view('microposts.show', compact('micropost', 'like'));
     }
 
     //新規投稿
