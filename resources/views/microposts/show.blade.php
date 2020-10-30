@@ -24,7 +24,7 @@
             </tdoby>
           </table>    
 
-          <label>{{ $micropost->like->count() }}のいいねがついています。</label>
+          <label>{{ $micropost->likes_count }}のいいねがついています。</label>
 
           </div>
         </div>
