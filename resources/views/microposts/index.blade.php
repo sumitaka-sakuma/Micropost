@@ -27,8 +27,13 @@
                 <tr>
                   <td style="width:15%;"><img src="{{ asset('storage/profiles/'.$micropost->profile_image) }}" style="width:100px; height:100px;"></td>
                   <td style="width:20%;"><a href="{{ route('users.show', ['id' => $micropost->id ]) }}">{{ $micropost->name }}</a></td>
+                  <td>投稿ID{{$micropost->id}}</td>
+                  <td>ユーザーID{{$micropost->user_id}}</td>
                   <td style="width:30%;">
                     {{ $micropost->content }}
+                  </td>
+                  <td>
+                    <a href="{{ route('microposts.show', ['id' => $micropost->id]) }}">詳細</a>
                   </td>
                 @endforeach
                 

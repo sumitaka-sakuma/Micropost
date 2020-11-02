@@ -24,7 +24,7 @@ class LikesController extends Controller
         
         $micropost = Micropost::findOrFail($micropostId);
 
-        return redirect()->action('MicropostsController@index', $micropostId);
+        return redirect()->action('MicropostsController@show', $micropostId);
 
     }
 
@@ -36,7 +36,7 @@ class LikesController extends Controller
         //likeテーブルの中から現在ログインしているuser_idを取得する
         $micropost->like_by()->findOrFail($likeId)->delete();
 
-        return redirect()->action('MicropostsController@index', $micropostId);
+        return redirect()->action('MicropostsController@show', $micropostId);
     }
 
 }
