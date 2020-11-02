@@ -24,17 +24,19 @@
                   @if (Auth::check())
                     @if ($like)
                       {{ Form::model($micropost, array('action' => array('LikesController@destroy', $micropost->id, $like->id))) }}
-                        <button type="submit">
-                          <img src="/images/icon_heart_red.svg">
-                          Like {{ $micropost->likes_count }}
-                        </button>
+                        <div class="form-group">
+                          <div class="text-right">
+                            <button type="submit" class="btn btn-primary">いいね</button>
+                          </div>
+                        </div>
                       {!! Form::close() !!}
                     @else
                       {{ Form::model($micropost, array('action' => array('LikesController@store', $micropost->id))) }}
-                        <button type="submit">
-                          <img src="/images/icon_heart.svg">
-                          Like {{ $micropost->likes_count }}
-                       </button>
+                        <div class="form-group">
+                          <div class="text-right">
+                            <button type="submit" class="btn btn-danger">いいね解除</button>
+                          </div>
+                        </div>
                       {!! Form::close() !!}
                     @endif
                   @endif

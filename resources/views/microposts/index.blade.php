@@ -27,8 +27,33 @@
                 <tr>
                   <td style="width:15%;"><img src="{{ asset('storage/profiles/'.$micropost->profile_image) }}" style="width:100px; height:100px;"></td>
                   <td style="width:20%;"><a href="{{ route('users.show', ['id' => $micropost->id ]) }}">{{ $micropost->name }}</a></td>
-                  <td style="width:50%;">
+                  <td style="width:30%;">
                     {{ $micropost->content }}
+                  </td>
+                  <td style="width:20%;">
+                    @if (Auth::check())
+                      @if($likes)
+                        {{ Form::model($micropost, array('action' => array('LikesController@destroy', $micropost->id, $like->id))) }}
+                      
+                          <div class="form-group">
+                            <div class="text-right">
+                              <button type="submit" class="btn btn-primary">いいね</button>
+                            </div>
+                          </div>
+                        </form>
+                        {!! Form::close() !!}
+                      @else
+                        {{ Form::model($micropost, array('action' => array('LikesController@store', $micropost->id))) }}
+                      
+                          <div class="form-group">
+                            <div class="text-right">
+                              <button type="submit" class="btn btn-danger">いいね解除</button>
+                            </div>
+                          </div>
+                        </form>
+                        {!! Form::close() !!}
+                      @endif
+                    @endif
                   </td>
                   
                 @endforeach

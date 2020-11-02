@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Micropost;
 use App\Models\Follower;
+use App\Models\Like;
 use App\Services\FormSearch;
 use App\Http\Requests\ContentValidation;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,8 @@ class MicropostsController extends Controller
 
         //検索フォームに入力した値を格納
         $search = $request->input('search');
+
+        $micropost = new Micropost();
         
         //検索フォーム
         $query = DB::table('microposts')
@@ -36,7 +39,10 @@ class MicropostsController extends Controller
 
         $microposts = $query->paginate(10);
 
-        return view('microposts.index', compact('microposts'));
+        $likes = $micropost->likes()->where('micropost_id', Auth::user()->id)->first();
+        //dd($likes);
+        return view('microposts.index')->with(array('microposts' => $microposts,
+                                                   'likes' => $likes));
     }
 
     //投稿の詳細
@@ -44,8 +50,8 @@ class MicropostsController extends Controller
         
         $micropost = Micropost::findOrFail($id);
 
-        $like = $micropost->likes()->where('user_id', Auth::user()->id)->first();
-
+        $like = $micropost->likes()->where('micropost_id', Auth::user()->id)->first();
+        //dd($like);
         return view('microposts.show')->with(array('micropost' => $micropost,
                                                   'like' => $like));
     }
