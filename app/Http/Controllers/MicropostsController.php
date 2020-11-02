@@ -39,10 +39,9 @@ class MicropostsController extends Controller
 
         $microposts = $query->paginate(10);
 
-        $likes = $micropost->likes()->where('micropost_id', Auth::user()->id)->first();
+        //$likes = $microposts->likes()->where('micropost_id', Auth::user()->id)->first();
         //dd($likes);
-        return view('microposts.index')->with(array('microposts' => $microposts,
-                                                   'likes' => $likes));
+        return view('microposts.index', compact('microposts'));
     }
 
     //投稿の詳細
@@ -50,7 +49,7 @@ class MicropostsController extends Controller
         
         $micropost = Micropost::findOrFail($id);
 
-        $like = $micropost->likes()->where('micropost_id', Auth::user()->id)->first();
+        $like = $micropost->likes()->where('user_id', Auth::user()->id)->first();
         //dd($like);
         return view('microposts.show')->with(array('micropost' => $micropost,
                                                   'like' => $like));
