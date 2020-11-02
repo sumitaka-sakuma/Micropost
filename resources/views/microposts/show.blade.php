@@ -11,42 +11,36 @@
         
           <img src="{{ asset('storage/profiles/'.$micropost->user->profile_image) }}" alt="プロフィール画像" style="width:100px; height:100px;">
 
-          <table class="table" width="100%" style="table-layout:fixed;">
-            <thead>
-              <tr>
-                <th scope="col">投稿</th>   
-             </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{{ $micropost->content }}</td>
-                <td>
-                  @if (Auth::check())
-                    @if ($like)
-                      {{ Form::model($micropost, array('action' => array('LikesController@destroy', $micropost->id, $like->id))) }}
-                        <div class="form-group">
-                          <div class="text-right">
-                            <button type="submit" class="btn btn-primary">いいね</button>
-                          </div>
-                        </div>
-                      {!! Form::close() !!}
-                    @else
-                      {{ Form::model($micropost, array('action' => array('LikesController@store', $micropost->id))) }}
-                        <div class="form-group">
-                          <div class="text-right">
-                            <button type="submit" class="btn btn-danger">いいね解除</button>
-                          </div>
-                        </div>
-                      {!! Form::close() !!}
-                    @endif
-                  @endif
-                </td>
-              </tr>
-            </tdoby>
-          </table>    
-
-          <label>{{ $micropost->likes_count }}のいいねがついています。</label>
-
+          {{ $micropost->user->name }}
+          {{ $micropost->content }}
+            @if (Auth::check())
+              @if ($like)
+                {{ Form::model($micropost, array('action' => array('LikesController@destroy', $micropost->id, $like->id))) }}
+                  <div class="form-group">
+                    <div class="text-right">
+                      <button type="submit" class="btn btn-primary">いいね</button>
+                    </div>
+                  </div>
+                {!! Form::close() !!}
+              @else
+                {{ Form::model($micropost, array('action' => array('LikesController@store', $micropost->id))) }}
+                  <div class="form-group">
+                    <div class="text-right">
+                      <button type="submit" class="btn btn-danger">いいねを外す</button>
+                    </div>
+                  </div>
+                {!! Form::close() !!}
+              @endif
+            @endif
+            
+          <form method=GET action="">
+          @csrf
+            <div class="form-group">
+              <div class="text-right">
+                <button type="submit" class="btn btn-primary">いいねしたユーザーの一覧</button>
+              </div>
+            </div>
+          </form>
           </div>
         </div>
       </div>

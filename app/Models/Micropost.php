@@ -27,11 +27,5 @@ class Micropost extends Model
 
         return Like::where('user_id', Auth::user()->id)->first();
     }
-
-    //いいねしているかの判定
-    public function isLike($micropostId){
-
-        return $this->likes()->where('id', $micropostId)->exists();
-    }
     
 }

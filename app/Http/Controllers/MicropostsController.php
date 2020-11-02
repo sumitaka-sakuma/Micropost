@@ -21,9 +21,6 @@ class MicropostsController extends Controller
         //検索フォームに入力した値を格納
         $search = $request->input('search');
 
-        $micropost_id = Micropost::select('id')->get();
-        
-        //dd($micropost_id[2]->id);
         //検索フォーム
         $query = DB::table('microposts')
                    ->join('users', 'users.id', '=', 'microposts.user_id');   
@@ -40,7 +37,7 @@ class MicropostsController extends Controller
         $query->orderBy('microposts.created_at', 'desc');
 
         $microposts = $query->paginate(10);
-        //dd($microposts);
+        
         return view('microposts.index', compact('microposts'));
     }
 
@@ -48,7 +45,7 @@ class MicropostsController extends Controller
     public function show($id){
         
         $micropost = Micropost::findOrFail($id);
-
+        
         $like = $micropost->likes()->where('user_id', Auth::user()->id)->first();
         
         return view('microposts.show')->with(array('micropost' => $micropost,
