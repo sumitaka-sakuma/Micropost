@@ -33,7 +33,13 @@
                     {{ $micropost->content }}
                   </td>
                   <td>
-                    <a href="{{ route('microposts.show', ['id' => $micropost->id]) }}">詳細</a>
+                    <form method=GET action="{{ route('microposts.show', ['id' => $micropost->id])}}">
+                      <div class="form-group">
+                        <div class="text-right">
+                          <button type="submit" class="btn btn-secondry">詳細</button>
+                        </div>
+                      </div>
+                    </form>
                   </td>
                 @endforeach
                 

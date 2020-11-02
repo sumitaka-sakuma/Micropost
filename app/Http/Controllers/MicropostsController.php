@@ -20,7 +20,10 @@ class MicropostsController extends Controller
 
         //検索フォームに入力した値を格納
         $search = $request->input('search');
+
+        $micropost_id = Micropost::select('id')->get();
         
+        //dd($micropost_id[2]->id);
         //検索フォーム
         $query = DB::table('microposts')
                    ->join('users', 'users.id', '=', 'microposts.user_id');   
@@ -32,7 +35,8 @@ class MicropostsController extends Controller
             $query = FormSearch::searchForMicroposts($search, $query);
         }
 
-        $query->select('users.id', 'users.name', 'users.created_at', 'users.profile_image', 'microposts.user_id', 'microposts.content');
+        $query->select('users.id', 'users.name', 'users.created_at', 'users.profile_image', 
+                       'microposts.id', 'microposts.user_id', 'microposts.content');
         $query->orderBy('microposts.created_at', 'desc');
 
         $microposts = $query->paginate(10);
