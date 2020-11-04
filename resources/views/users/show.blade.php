@@ -133,7 +133,7 @@
                     </div>
                   </td>
                   @if(empty($micropost->updated_at))
-                    <td @if(Auth::id() === $user->id) style="width:15%;" @else style="width:25%;" @endif>
+                    <td @if(Auth::id() == $user->id) style="width:15%;" @else style="width:25%;" @endif>
                       {{ $micropost->created_at}}
                     </td>
                   @else  
