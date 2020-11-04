@@ -16,9 +16,9 @@ class LikesController extends Controller
     //投稿の一覧
     public function index($micropostId){
         
-        $like_users = Like::find($micropostId);
+        $like_users = Like::all();
          
-        //dd($like_users->user->name);
+        //dd($like_users[0]->user->name);
         return view('microposts.likes', compact('like_users'));
     }
 
