@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\models\User;
 use App\models\Micropost;
 use App\models\Like;
 
@@ -12,6 +13,14 @@ use App\models\Like;
 class LikesController extends Controller
 {
     
+    //投稿の一覧
+    public function index($micropostId){
+        
+        $likes = Like::findOrFail($micropostId);
+        dd($likes);
+        return view('micropost.likes', compact($likes));
+    }
+
     //投稿にいいねをつける
     public function store(Request $request, $micropostId){
 

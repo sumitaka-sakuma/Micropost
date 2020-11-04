@@ -18,13 +18,13 @@
           @else
             {{ $micropost->updated_at }}
           @endif
-          
+
             @if (Auth::check())
               @if ($like)
                 {{ Form::model($micropost, array('action' => array('LikesController@destroy', $micropost->id, $like->id))) }}
                   <div class="form-group">
                     <div class="text-right">
-                      <button type="submit" class="btn btn-primary">いいね</button>
+                      <button type="submit" class="btn btn-danger">いいねを外す</button>
                     </div>
                   </div>
                 {!! Form::close() !!}
@@ -32,14 +32,14 @@
                 {{ Form::model($micropost, array('action' => array('LikesController@store', $micropost->id))) }}
                   <div class="form-group">
                     <div class="text-right">
-                      <button type="submit" class="btn btn-danger">いいねを外す</button>
+                      <button type="submit" class="btn btn-primary">いいね</button>
                     </div>
                   </div>
                 {!! Form::close() !!}
               @endif
             @endif
             
-          <form method=GET action="">
+          <form method=GET action="{{ route('likes.index', ['id' => $micropost->id]) }}">
           @csrf
             <div class="form-group">
               <div class="text-right">
@@ -47,6 +47,7 @@
               </div>
             </div>
           </form>
+        
           </div>
         </div>
       </div>

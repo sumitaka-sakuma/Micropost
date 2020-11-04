@@ -30,7 +30,7 @@
                   <td style="width:30%;">
                     {{ $micropost->content }}
                   </td>
-                  <td style="width:20%">
+                  <td style="width20%">
                     <form method=GET action="{{ route('microposts.show', ['id' => $micropost->id])}}">
                     @csrf
                       <div class="form-group">
