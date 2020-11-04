@@ -15,7 +15,7 @@
                 <tr>
                   
                   <td style="width:15%;"><img src="{{ asset('storage/profiles/'.$like_user->user->profile_image) }}" style="width:100px; height:100px;"></td>
-                  <td style="width:20%;">{{ $like_user->user->name }}</a></td>
+                  <td style="width:20%;"><a href="{{ route('users.show', ['id' => $like_user->user->id]) }}">{{ $like_user->user->name }}</a></td>
                   
                 @endforeach
                 
