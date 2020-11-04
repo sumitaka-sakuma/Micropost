@@ -35,7 +35,7 @@
                     @csrf
                       <div class="form-group">
                         <div class="text-right">
-                          <button type="submit" class="btn btn-primary">詳細</button>
+                          <button type="submit" class="btn btn-success">詳細</button>
                         </div>
                       </div>
                     </form>

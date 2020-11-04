@@ -148,7 +148,7 @@
                       @csrf
                         <div class="form-group">
                           <div class="text-right">
-                            <input class="btn btn-info" type="submit" value="詳細"> 
+                            <input class="btn btn-success" type="submit" value="詳細"> 
                           </div>
                         </div>
                       </form>
