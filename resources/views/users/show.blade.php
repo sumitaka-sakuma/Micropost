@@ -116,10 +116,11 @@
           <table class="table table-striped" width="100%" style="table-layout:fixed;">
             <thead>
               <tr>
-                <th scope="col" @if(Auth::id() === $user->id) style="width:60%;" @else style="width:70%;" @endif>投稿一覧</th> 
-                <th scope="col" @if(Auth::id() === $user->id) style="width:15%;" @else style="width:25%;" @endif></th> 
+                <th scope="col" style="width:50%;">投稿一覧</th> 
+                <th scope="col" style="width:20%;" ></th> 
                 @if(Auth::id() === $user->id)
-                  <th scope="col" style="width:15%;"></th>
+                  <th scope="col" style="width:10%;"></th>
+                  <th scope="col" style="width:10%;"></th>
                   <th scope="col" style="width:10%;"></th>
                 @endif  
               </tr>
@@ -127,21 +128,31 @@
             <tbody>
               @foreach($microposts as $micropost)
                 <tr>
-                  <td @if(Auth::id() === $user->id) style="width:60%;" @else style="width:70%;" @endif>
+                  <td style="width:50%;">
                     <div>
                       <p>{{ $micropost->content}}</p>
                     </div>
                   </td>
                   @if(empty($micropost->updated_at))
-                    <td @if(Auth::id() == $user->id) style="width:15%;" @else style="width:25%;" @endif>
+                    <td style="width:15%;">
                       {{ $micropost->created_at}}
                     </td>
                   @else  
-                    <td @if(Auth::id() === $user->id) style="width:15%;" @else style="width:25%;" @endif>
+                    <td style="width:20%;">
                       <label>{{ $micropost->updated_at}}</label>
                     </td>
                   @endif
                   @if(Auth::id() === $user->id)
+                    <td style="width:10%;"> 
+                      <form method="GET" action="{{ route('microposts.show', ['id' => $micropost->id ])}}">
+                      @csrf
+                        <div class="form-group">
+                          <div class="text-right">
+                            <input class="btn btn-info" type="submit" value="詳細"> 
+                          </div>
+                        </div>
+                      </form>
+                    </td>
                     <td style="width:10%;">
                       <form method="GET" action="{{ route('microposts.edit', ['id' => $micropost->id ])}}">
                         @csrf

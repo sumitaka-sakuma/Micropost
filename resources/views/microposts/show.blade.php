@@ -11,7 +11,7 @@
         
           <img src="{{ asset('storage/profiles/'.$micropost->user->profile_image) }}" alt="プロフィール画像" style="width:100px; height:100px;">
 
-          {{ $micropost->user->name }}
+          <a href="{{ route('users.show', ['id' => $micropost->user->id])}}">{{ $micropost->user->name }}</a>
           {{ $micropost->content }}
           @if($micropost->updated_at == null)
             {{ $micropost->created_at}}
