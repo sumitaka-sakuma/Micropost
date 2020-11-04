@@ -22,6 +22,8 @@
               </form>
             @endif
 
+            <p class="text-left">{{ $users->follows->count() }}人をフォローしています</p>
+
             <table class="talbe" width="100%" style="table-layout:fixed;">
               <tbody>
                 @foreach($users->follows as $user)

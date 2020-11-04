@@ -9,6 +9,7 @@
         <div class="card-header">いいねした人の一覧</div>
           <div class="card-body">
             
+            <p>{{ $like_users->count() }}個のいいねがついています。</p>
             <table class="talbe" width="100%" style="table-layout:fixed;">
               <tbody>
                 @foreach($like_users as $like_user)

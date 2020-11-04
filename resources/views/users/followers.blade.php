@@ -12,6 +12,7 @@
             @if($users->followers->count() == 0)
               <p class="text-center">フォロワーがいません。</p>
             @endif
+              <p class="text-left">{{ $users->followers->count() }}人のフォロワーがいます。
 
             <table class="talbe" width="100%" style="table-layout:fixed;">
               <tbody>
