@@ -13,6 +13,12 @@
 
           {{ $micropost->user->name }}
           {{ $micropost->content }}
+          @if($micropost->updated_at == null)
+            {{ $micropost->created_at}}
+          @else
+            {{ $micropost->updated_at }}
+          @endif
+          
             @if (Auth::check())
               @if ($like)
                 {{ Form::model($micropost, array('action' => array('LikesController@destroy', $micropost->id, $like->id))) }}
