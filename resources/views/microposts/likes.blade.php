@@ -1,1 +1,1 @@
-{{ $likes }}
+{{ $like_users }}

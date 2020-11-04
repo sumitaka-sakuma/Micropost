@@ -39,7 +39,7 @@
               @endif
             @endif
             
-          <form method=GET action="{{ route('likes.index', ['id' => $micropost->id]) }}">
+          <form method=GET action="{{ route('likes.index', ['id' => $micropost->id])}}">
           @csrf
             <div class="form-group">
               <div class="text-right">
