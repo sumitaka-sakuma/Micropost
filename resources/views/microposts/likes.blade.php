@@ -14,7 +14,8 @@
                 @foreach($like_users as $like_user)
                 <tr>
                   
-                  <td style="width:20%;">{{$like_user->user->name}}</td>
+                  <td style="width:15%;"><img src="{{ asset('storage/profiles/'.$like_user->user->profile_image) }}" style="width:100px; height:100px;"></td>
+                  <td style="width:20%;">{{ $like_user->user->name }}</a></td>
                   
                 @endforeach
                 
