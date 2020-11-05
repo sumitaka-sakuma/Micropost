@@ -61,6 +61,14 @@
               </form>
             @endif
           @endif
+          <form method="GET" action="{{ route('users.likes', ['id' => $user->id] )}}">
+          @csrf
+            <div class="form-group">
+              <div class="text-right">
+                <button type="submit" class="btn btn-primary">いいねした投稿</button>
+              </div>
+            </div>
+          </form>
 
           <table class="table" width="100%" style="table-layout:fixed;">
             <thead>

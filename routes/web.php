@@ -20,6 +20,8 @@ Route::group(['prefix' =>'users', 'middleware' => 'auth'], function(){
 
     Route::get('followings/{id}', 'UsersController@followings')->name('users.followings');
     Route::get('followers/{id}', 'UsersController@followers')->name('users.followers');
+
+    Route::get('like/{id}', 'UsersController@likes')->name('users.likes');
 });
 
 Route::group(['prefix' =>'microposts', 'middleware' => 'auth'], function(){

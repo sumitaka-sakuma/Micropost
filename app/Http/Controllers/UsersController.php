@@ -202,6 +202,16 @@ class UsersController extends Controller
         return view('users.followers', compact('users'));
     }
 
+    //いいねした投稿一覧
+    public function likes($userId){
+
+        $user = User::findOrFail($userId);
+
+        $like_users = $user->likes()->where('user_id' , $userId)->get();
+        
+        return view('users.likes', compact('like_users'));
+    }
+
     //画像のリサイズ、保存の処理
     private function saveProfileImage($profileImage, $id){
 
