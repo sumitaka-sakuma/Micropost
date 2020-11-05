@@ -16,8 +16,8 @@
                 <form method="GET" action="{{ route('users.followings', ['id' => $user->id ])}}">
                   @csrf
                   <div class="form-group">
-                    <div class="text-right">
-                      <input class="btn btn-outline-info " type="submit" value="フォロー一覧"> 
+                    <div class="text-right">  
+                      <input class="btn btn-outline-info " type="submit" value="フォロー一覧：{{ $user->follows->count() }}"> 
                     </div>
                   </div>
                 </form>
@@ -26,7 +26,7 @@
                   @csrf
                   <div class="form-group">
                     <div class="text-right">
-                      <input class="btn btn-outline-secondary " type="submit" value="フォロワー一覧"> 
+                      <input class="btn btn-outline-secondary " type="submit" value="フォロワー一覧：{{ $user->followers->count() }}"> 
                     </div>
                   </div>
                 </form>
@@ -35,7 +35,7 @@
                 @csrf
                   <div class="form-group">
                     <div class="text-right">
-                      <button type="submit" class="btn btn-outline-success">いいねした投稿</button>
+                      <input class="btn btn-outline-success" type="submit" value="いいねした投稿：{{ $user->likes->count() }}">
                     </div>
                   </div>
                 </form>
