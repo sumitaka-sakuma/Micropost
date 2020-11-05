@@ -9,6 +9,11 @@
         <div class="card-header">いいね一覧</div>
           <div class="card-body">
 
+          @if($like_users->count() == 0)
+            <p class="text-center">いいねをしていません。</p>
+          @endif
+            <p class="text-left">{{ $like_users->count() }}のいいねをしました。
+
             <table class="talbe" width="100%" style="table-layout:fixed;">
               <tbody>
                 @foreach($like_users as $like_user)

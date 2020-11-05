@@ -209,7 +209,7 @@ class UsersController extends Controller
         $user = User::findOrFail($userId);
 
         $like_users = $user->likes()->where('user_id' , $userId)->get();
-        
+        //dd($like_users->count());
         return view('users.likes', compact('like_users'));
     }
 
