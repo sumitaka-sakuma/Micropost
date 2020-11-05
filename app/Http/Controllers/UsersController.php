@@ -208,8 +208,8 @@ class UsersController extends Controller
 
         $user = User::findOrFail($userId);
 
-        $like_users = $user->likes()->where('user_id' , $userId)->get();
-        //dd($like_users->count());
+        $like_users = $user->likes()->where('user_id' , $userId)->paginate(10);
+        
         return view('users.likes', compact('like_users'));
     }
 
