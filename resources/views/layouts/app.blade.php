@@ -82,6 +82,13 @@
                                         @csrf
                                     </form>
 
+                                    <a class="dropdown-item" href="{{ route('users.likes', ['id' => Auth::id() ]) }}">
+                                        {{ __('いいねした一覧') }}
+                                    </a>
+                                    <form action="{{ route('users.likes', ['id' => Auth::id() ]) }}" method="GET" class="d-none">
+                                        @csrf
+                                    </form>
+
                                     <a class="dropdown-item" href="{{ route('microposts.create', ['id' => Auth::id() ]) }}">
                                         {{ __('投稿する') }}
                                     </a>
