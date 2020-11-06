@@ -8,16 +8,24 @@
       <div class="card">
         <div class="card-header">投稿の詳細</div>
           <div class="card-body">
-        
-          <img src="{{ asset('storage/profiles/'.$micropost->user->profile_image) }}" alt="プロフィール画像" style="width:100px; height:100px;">
-
-          <a href="{{ route('users.show', ['id' => $micropost->user->id])}}">{{ $micropost->user->name }}</a>
-          {{ $micropost->content }}
-          @if($micropost->updated_at == null)
-            {{ $micropost->created_at}}
-          @else
-            {{ $micropost->updated_at }}
-          @endif
+            <div class="row">
+              <div class="col-md-2">
+                <img src="{{ asset('storage/profiles/'.$micropost->user->profile_image) }}" alt="プロフィール画像" style="width:100px; height:100px;">
+              </div>
+              <div class="col-md-2">
+                <a href="{{ route('users.show', ['id' => $micropost->user->id])}}">{{ $micropost->user->name }}</a>
+              </div>
+              <div class="col-md-4">
+                <p>{{ $micropost->content }}</p>
+              </div>
+              <div class="col-md-4">
+                @if($micropost->updated_at == null)
+                  <p>{{ $micropost->created_at}}</p>
+                @else
+                  <p>{{ $micropost->updated_at }}</p>
+                @endif
+              </div>
+            </div>
 
             @if (Auth::check())
               @if ($like)
